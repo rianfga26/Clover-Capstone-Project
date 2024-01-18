@@ -13,6 +13,34 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// User Page
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('beranda');
+})->name('beranda');
+
+Route::get('/jadwal-kegiatan', function () {
+    return view('jadwal-kegiatan');
+})->name('jadwal_kegiatan');
+
+Route::get('/jadwal-kegiatan/detail/{judul}', function ($judul = null) {
+    return view('detail-jadwal-kegiatan', compact('judul'));
+})->name('jadwal_kegiatan.detail');
+
+Route::get('/dokumentasi', function () {
+    return view('dokumentasi');
+})->name('dokumentasi');
+
+Route::get('/dokumentasi/detail/{judul}', function ($judul = null) {
+    return view('detail-dokumentasi', compact('judul'));
+})->name('dokumentasi.detail');
+
+Route::get('/kontak', function () {
+    return view('kontak');
+})->name('kontak');
+
+
+// Admin Page
+Route::get('/admin/login', function () {
+    return view('admin.login');
+})->name('login');
+
