@@ -1,9 +1,9 @@
 
-    @include('livewire.jadwalmodal')
+@include('livewire.posyandumodal')
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Jadwal kegiatan</h3>
+                <h3>Posyandu</h3>
                <br>
                <br>
               
@@ -12,14 +12,14 @@
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Jadwal dan kegiatan</li>
+                        <li class="breadcrumb-item active" aria-current="page">Posyandu</li>
                     </ol>
                 </nav>
             </div>
             <br>
             @if (session()->has('message'))
                     <h5 class="alert alert-success">{{ session('message') }}</h5>
-                @endif
+            @endif
         </div>
     </div>
     <section class="section">
@@ -30,31 +30,29 @@
             </div>
             
             <div class="card-body">
-                <button type="button" class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#jadwalModal">Tambah data</button> 
+                <button type="button" class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#posyanduModal">Tambah data</button> 
 
                 <table class="table table-striped" id="table1">
                     <thead>
                         <tr>
                            
-                            <th>judul</th>
+                            <th>nama</th>
                             
                             <th>deskripsi</th>
-                            <th>lokasi</th>
                             <th>tanggal dibuat</th>
                             
                             <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
-                    @forelse ($jadwals as $jadwal)
+                    @forelse ($posyandus as $posyandu)
                         <tr>
-                                <td>{{ $jadwal->judul }}</td>
-                                <td>{{ $jadwal->deskripsi }}</td>
-                                <td>{{ $jadwal->lokasi }}</td>
-                                 <td>{{ $jadwal->birthdate }}</td>
+                                <td>{{ $posyandu->nama }}</td>
+                                <td>{{ $posyandu->deskripsi }}</td>
+                                 <td>{{ $posyandu->birthdate }}</td>
                             <td>
-                                <button type="button" data-bs-toggle="modal" data-bs-target="#updateJadwalModal" wire:click="editJadwal({{$jadwal->id}})" class="btn btn-warning btn-sm ">Ubah</button>
-                                <button type="button" data-bs-toggle="modal" data-bs-target="#deleteJadwalModal" wire:click="deleteJadwal({{$jadwal->id}})" class="btn btn-danger btn-sm">Hapus</button>
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#updatePosyanduModal" wire:click="editPosyandu({{$posyandu->id}})" class="btn btn-warning btn-sm ">Ubah</button>
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#deletePosyanduModal" wire:click="deletePosyandu({{$posyandu->id}})" class="btn btn-danger btn-sm">Hapus</button>
                                 
                             </td>
                         </tr>
@@ -66,9 +64,9 @@
                     </tbody>
                 </table>
                 <div>
-                            {{ $jadwals->links() }}
+                            {{ $posyandus->links() }}
                         </div>
             </div>
         </div>
-        
+
     </section>
