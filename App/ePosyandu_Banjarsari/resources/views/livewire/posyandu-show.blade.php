@@ -1,4 +1,5 @@
 
+<div>
 @include('livewire.posyandumodal')
     <div class="page-title">
         <div class="row">
@@ -70,3 +71,6 @@
         </div>
 
     </section>
+</div>
+
+

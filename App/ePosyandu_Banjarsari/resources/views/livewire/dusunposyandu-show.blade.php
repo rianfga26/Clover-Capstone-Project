@@ -1,4 +1,5 @@
-
+<div>
+    
 @include('livewire.dusunposyandumodal')
     <div class="page-title">
         <div class="row">
@@ -70,3 +71,5 @@
         </div>
 
     </section>
+
+</div>
