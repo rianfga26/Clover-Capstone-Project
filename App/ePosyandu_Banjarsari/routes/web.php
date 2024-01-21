@@ -44,3 +44,38 @@ Route::get('/admin/login', function () {
     return view('admin.login');
 })->name('login');
 
+Route::get('/admin/dashboard', function () {
+    return view('admin.index');
+})->name('admin.index');    
+
+Route::get('/admin/dusun-posyandu', function () {
+    return view('admin.dusun-posyandu');
+})->name('admin.dusun-posyandu');
+
+Route::get('/admin/dusun', function () {
+    return view('admin.dusun');
+})->name('admin.dusun');
+
+Route::get('/admin/jadwal-kegiatan', function () {
+    return view('admin.jadwal-kegiatan');
+})->name('admin.jadwal');
+
+Route::get('/admin/dokumentasi', function () {
+    return view('admin.dokumentasi');
+})->name('admin.dokumentasi');    
+
+Route::get('/admin/pendaftaran-anggota-posyandu', function () {
+    return view('admin.pendaftaran-anggota');
+})->name('admin.pendaftaran');    
+
+// Admin Master - Page
+Route::get('/admin/kategori/posyandu', function () {
+    return view('admin.master.posyandu');
+})->name('admin.master.posyandu');
+
+Route::get('/admin/kategori/dokumentasi', function () {
+    return view('admin.master.dokumentasi');
+})->name('admin.master.dokumentasi');
+
+
+
