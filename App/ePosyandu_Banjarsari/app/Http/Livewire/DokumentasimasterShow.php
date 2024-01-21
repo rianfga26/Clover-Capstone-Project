@@ -47,7 +47,7 @@ class DokumentasimasterShow extends Component
         Dokumentasimaster::create($validatedData);
         session()->flash('message','Data Dokumentasi Telah Tersimpan');
         $this->resetInput();
-        $this->dispatch('close-modal');
+        $this->dispatchBrowserEvent('close-modal'); // Ganti dispatch dengan dispatchBrowserEvent
     }
      
     public function editDokumentasimaster(int $dokumentasimaster_id)
@@ -86,13 +86,17 @@ class DokumentasimasterShow extends Component
             }
         } else {
             // If no new image is provided, keep the current image path
-            $validatedData['image'] = $this->currentImage;
+             // Jika $this->image null, log atau tangani kasus ini sesuai kebutuhan
+        // Misalnya, Anda bisa menambahkan pesan log:
+        \Log::info('No new image selected during update.');
+        // Atau Anda bisa memutuskan untuk tidak mengubah image:
+        // $validatedData['image'] = $this->currentImage;
         }
 
         Dokumentasimaster::where('id', $this->dokumentasimaster_id)->update($validatedData);
         session()->flash('message', 'Data Dokumentasi Telah Terperbarui');
         $this->resetInput();
-        $this->dispatch('close-modal');
+        $this->dispatchBrowserEvent('close-modal');
     }
      
     public function deleteDokumentasimaster(int $dokumentasimaster_id)
@@ -104,12 +108,14 @@ class DokumentasimasterShow extends Component
     {
         Dokumentasimaster::find($this->dokumentasimaster_id)->delete();
         session()->flash('message','Data dokumentasi telah terhapus');
-        $this->dispatch('close-modal');
+        $this->dispatchBrowserEvent('close-modal');
     }
  
     public function closeModal()
     {
         $this->resetInput();
+        $this->emit('closeModal'); // Mengirim event Livewire
+        $this->dispatchBrowserEvent('close-modal');
     }
  
     public function resetInput()
