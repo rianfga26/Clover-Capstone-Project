@@ -27,3 +27,4 @@ Route::get('/jadwal', [App\Http\Controllers\JadwalController::class, 'index'])->
 Route::get('/dusunposyandu', [App\Http\Controllers\DusunposyanduController::class, 'index'])->name('dusunposyandu');
 Route::get('/posyandu', [App\Http\Controllers\PosyanduController::class, 'index'])->name('posyandu');
 Route::get('/dokumentasimaster', [App\Http\Controllers\DokumentasimasterController::class, 'index'])->name('dokumentasimaster');
+Route::get('/dokumentasi', [App\Http\Controllers\DokumentasisController::class, 'index'])->name('dokumentasi');

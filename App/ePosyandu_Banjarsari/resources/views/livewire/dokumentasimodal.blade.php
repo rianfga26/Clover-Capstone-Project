@@ -25,7 +25,18 @@
                         <input type="text" wire:model="deskripsi" class="form-control">
                         @error('deskripsi') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
-                    
+
+                    <div class="mb-3">
+                        <label>Kategori</label>
+                        <select wire:model="kategori" class="form-control">
+                            <option value="">Pilih Kategori</option>
+                            @foreach($kategoriOptions as $kategoriOption)
+                                <option value="{{ $kategoriOption }}">{{ $kategoriOption }}</option>
+                            @endforeach
+                        </select>
+                        @error('kategori') <span class="error">{{ $message }}</span> @enderror
+                    </div>
+
                     <div class="mb-3">
                     <label>Birthdate</label>
                     <input type="date" wire:model="birthdate" class="form-control">
@@ -70,6 +81,18 @@
                     <input type="file" wire:model="image" class="form-control">
                     @error('image') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
+
+                    <div class="mb-3">
+                        <label>Kategori</label>
+                        <select wire:model="kategori" class="form-control">
+                            <option value="">Pilih Kategori</option>
+                            @foreach($kategoriOptions as $kategoriOption)
+                                <option value="{{ $kategoriOption }}">{{ $kategoriOption }}</option>
+                            @endforeach
+                        </select>
+                        @error('kategori') <span class="error">{{ $message }}</span> @enderror
+                    </div>
+                    
                     <div class="mb-3">
                     <label>Birthdate</label>
                     <input type="date" wire:model="birthdate" class="form-control">

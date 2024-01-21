@@ -1,6 +1,6 @@
 <div>
     
-@include('livewire.dokumentasimodal')
+@include('livewire.dokumentasimodal', ['kategoriOptions' => $kategoriOptions])
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">

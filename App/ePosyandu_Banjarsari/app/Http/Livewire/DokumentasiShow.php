@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Dokumentasi;
+use App\Models\Dokumentasimaster;
 use Livewire\WithFileUploads; // Import the WithFileUploads trait
 
 class DokumentasiShow extends Component
@@ -13,7 +14,7 @@ class DokumentasiShow extends Component
  
     protected $paginationTheme = 'bootstrap';
     protected $currentImage; // Add this line
- 
+    public $nama; 
     public $judul, $image, $deskripsi, $kategori, $birthdate, $dokumentasi_id; // Add $image property
     public $search = '';
  
@@ -23,7 +24,7 @@ class DokumentasiShow extends Component
             'judul' => 'required|string',
             'image' => 'nullable|image|max:2048', // Adjust the image validation rules
             'deskripsi' => ['required','string'],
-            'kategori' => 'required|string',
+            'kategori' => 'required|string|in:' . implode(',', Dokumentasimaster::pluck('nama')->toArray()),
             'birthdate' => 'required|date',
             
         ];
@@ -75,7 +76,7 @@ class DokumentasiShow extends Component
             'judul' => 'required|string',
             'deskripsi' => 'required|string',
             'image' => 'nullable|image|max:1024', // Adjust the image validation rules
-            'kategori' => 'required|string',
+            'kategori' => 'required|string|in:' . implode(',', Dokumentasimaster::pluck('nama')->toArray()),
             'birthdate' => 'required|date',
             
         ]);
@@ -135,7 +136,9 @@ class DokumentasiShow extends Component
     public function render()
     {
         $dokumentasis = Dokumentasi::where('judul', 'like', '%'.$this->search.'%')->orderBy('id','DESC')->paginate(3);
-        //$dokumentasis = Student::select('id','name','email','course','birthdate')->get();
-        return view('livewire.dokumentasi-show', ['dokumentasis' => $dokumentasis]);
+        $kategoriOptions = Dokumentasimaster::pluck('nama')->toArray();
+       
+        return view('livewire.dokumentasi-show', compact('dokumentasis', 'kategoriOptions'))
+        ->layout('layouts.dokumentasi');
     }
 }
