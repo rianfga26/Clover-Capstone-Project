@@ -184,7 +184,7 @@
                         </li>
 
                         <li class="sidebar-item  ">
-                            <a href="" class='sidebar-link'>
+                            <a href="{{ route('logout') }}" class='sidebar-link'>
                                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
                                 <span>Logout</span>
                             </a>
