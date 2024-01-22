@@ -121,12 +121,12 @@
                 <ul class="submenu ">
                     
                     <li class="submenu-item active">
-                        <a href="component-accordion.html" class="submenu-link">Posyandu</a>
+                        <a href="posyandu" class="submenu-link">Posyandu</a>
                         
                     </li>
                     
                     <li class="submenu-item  ">
-                        <a href="component-alert.html" class="submenu-link">Dokumentasi</a>
+                        <a href="dokumentasimaster" class="submenu-link">Dokumentasi</a>
                         
                     </li>
                     
@@ -140,7 +140,7 @@
             
             <li
                 class="sidebar-item  ">
-                <a href="ui-file-uploader.html" class='sidebar-link'>
+                <a href="dusunposyandu" class='sidebar-link'>
                     <i class="bi bi-cloud-arrow-up-fill"></i>
                     <span>Dusun dan posyandu</span>
                 </a>
@@ -150,7 +150,7 @@
             
             <li
                 class="sidebar-item ">
-                <a href="application-email.html" class='sidebar-link'>
+                <a href="jadwal" class='sidebar-link'>
                     <i class="fa-solid fa-calendar-week"></i>
                     <span>Jadwal kegiatan</span>
                 </a>
@@ -160,7 +160,7 @@
             
             <li
                 class="sidebar-item  ">
-                <a href="application-chat.html" class='sidebar-link'>
+                <a href="dokumentasi" class='sidebar-link'>
                     <i class="bi bi-image-fill"></i>
                     <span>Dokumentasi</span>
                 </a>
