@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\WithPagination;
-use App\Models\Posyandu;
+use App\Models\KategoriPosyandu as Posyandu;
 use Livewire\Component;
 
 class PosyanduShow extends Component
@@ -96,6 +96,6 @@ class PosyanduShow extends Component
     {
         $posyandus = Posyandu::where('nama', 'like', '%'.$this->search.'%')->orderBy('id','DESC')->paginate(3);
         //$Posyandus = Posyandu::select('id','name','email','course')->get();
-        return view('livewire.posyandu-show', ['posyandus' => $posyandus]);
+        return view('livewire.posyandu-show', ['posyandus' => $posyandus])->extends('layouts.master-admin')->section('body');
     }
 }

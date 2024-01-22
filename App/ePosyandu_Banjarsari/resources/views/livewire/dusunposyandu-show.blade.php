@@ -1,4 +1,4 @@
-<div>
+<div class="page-heading">
     
 @include('livewire.dusunposyandumodal')
     <div class="page-title">
@@ -71,5 +71,14 @@
         </div>
 
     </section>
-
+    <script>
+        window.addEventListener('close-modal', event => {
+     
+            $('#dusunposyanduModal').modal('hide');
+            $('#updateDusunposyanduModal').modal('hide');
+            $('#deleteDusunposyanduModal').modal('hide');
+            $('.modal-backdrop').remove();
+            $('.modal-backdrop').remove();
+        })
+    </script>
 </div>

@@ -1,4 +1,4 @@
-<div>
+<div class="page-heading">
     
 @include('livewire.dokumentasimastermodal')
     <div class="page-title">
@@ -80,5 +80,13 @@
         </div>
 
     </section>
-
+    <script>
+        window.addEventListener('close-modal', event => {
+            $('#dokumentasimasterModal').modal('hide');
+            $('#updateDokumentasimasterModal').modal('hide');
+            $('#deleteDokumentasimasterModal').modal('hide');
+            $('.modal-backdrop').remove();
+            $('.modal-backdrop').remove();
+        })
+    </script>
 </div>

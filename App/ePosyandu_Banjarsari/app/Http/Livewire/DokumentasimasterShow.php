@@ -124,15 +124,13 @@ class DokumentasimasterShow extends Component
         $this->deskripsi = '';
         $this->image = null; // Reset image property
         $this->birthdate = '';
-
-        
     }
  
     public function render()
     {
         $dokumentasimasters = Dokumentasimaster::where('nama', 'like', '%'.$this->search.'%')->orderBy('id','DESC')->paginate(3);
         //$dokumentasimasters = Student::select('id','name','email','course','birthdate')->get();
-        return view('livewire.dokumentasimaster-show', ['dokumentasimasters' => $dokumentasimasters]);
+        return view('livewire.dokumentasimaster-show', ['dokumentasimasters' => $dokumentasimasters])->extends('layouts.master-admin')->section('body');
     }
 
 }

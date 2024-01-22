@@ -1,12 +1,18 @@
 <?php
 
+use App\Http\Livewire\AdminDusun;
+use App\Http\Livewire\DusunPosyandu;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 
-
-
-
+use App\Http\Livewire\PendaftaranAnggota;
+use App\Http\Livewire\DokumentasimasterShow;
+use App\Http\Livewire\DokumentasiShow;
+use App\Http\Livewire\JadwalShow;
+use App\Http\Livewire\PosyanduShow;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,21 +26,10 @@ use App\Http\Controllers\DashboardController;
 */
 
 // User Page
+Route::get('/', function () {
+    return view('beranda');
+})->name('beranda');
 
-//login
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/login', [AuthController::class, 'authenticated']);
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('admin.index'); //
-
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/jadwal', [App\Http\Controllers\JadwalController::class, 'index'])->name('jadwal');
-Route::get('/dusunposyandu', [App\Http\Controllers\DusunposyanduController::class, 'index'])->name('dusunposyandu');
-Route::get('/posyandu', [App\Http\Controllers\PosyanduController::class, 'index'])->name('posyandu');
-Route::get('/dokumentasimaster', [App\Http\Controllers\DokumentasimasterController::class, 'index'])->name('dokumentasimaster');
-Route::get('/dokumentasi', [App\Http\Controllers\DokumentasisController::class, 'index'])->name('dokumentasi');
 
 Route::get('/jadwal-kegiatan', function () {
     return view('jadwal-kegiatan');
@@ -57,41 +52,40 @@ Route::get('/kontak', function () {
 })->name('kontak');
 
 
+//login
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'authenticated']);
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 // Admin Page
-// Route::get('/admin/login', function () {
-//     return view('admin.login');
-// })->name('login');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('admin.index'); 
+Route::get('/admin/jadwal-kegiatan', JadwalShow::class)->name('admin.jadwal');
+Route::get('/admin/kategori/posyandu', PosyanduShow::class)->name('admin.master.posyandu');
+Route::get('/admin/kategori/dokumentasi', DokumentasimasterShow::class)->name('admin.master.dokumentasi');
+Route::get('/admin/dokumentasi', DokumentasiShow::class)->name('admin.dokumentasi');
 
 // Route::get('/admin/dashboard', function () {
 //     return view('admin.index');
 // })->name('admin.index');    
 
-Route::get('/admin/dusun-posyandu', function () {
-    return view('admin.dusun-posyandu');
-})->name('admin.dusun-posyandu');
+Route::get('/admin/dusun-posyandu', DusunPosyandu::class)->name('admin.dusun-posyandu');
+Route::get('/admin/dusun', AdminDusun::class)->name('admin.dusun');
+Route::get('/admin/pendaftaran-anggota-posyandu', PendaftaranAnggota::class)->name('admin.pendaftaran');  
 
-Route::get('/admin/dusun', function () {
-    return view('admin.dusun');
-})->name('admin.dusun');
+// Route::get('/admin/jadwal-kegiatan', function () {
+//     return view('admin.jadwal-kegiatan');
+// })->name('admin.jadwal');
 
-Route::get('/admin/jadwal-kegiatan', function () {
-    return view('admin.jadwal-kegiatan');
-})->name('admin.jadwal');
-
-Route::get('/admin/dokumentasi', function () {
-    return view('admin.dokumentasi');
-})->name('admin.dokumentasi');    
-
-Route::get('/admin/pendaftaran-anggota-posyandu', function () {
-    return view('admin.pendaftaran-anggota');
-})->name('admin.pendaftaran');    
+// Route::get('/admin/dokumentasi', function () {
+//     return view('admin.dokumentasi');
+// })->name('admin.dokumentasi');      
 
 // Admin Master - Page
-Route::get('/admin/kategori/posyandu', function () {
-    return view('admin.master.posyandu');
-})->name('admin.master.posyandu');
+// Route::get('/admin/kategori/posyandu', function () {
+//     return view('admin.master.posyandu');
+// })->name('admin.master.posyandu');
 
-Route::get('/admin/kategori/dokumentasi', function () {
-    return view('admin.master.dokumentasi');
-})->name('admin.master.dokumentasi');
+// Route::get('/admin/kategori/dokumentasi', function () {
+//     return view('admin.master.dokumentasi');
+// })->name('admin.master.dokumentasi');
 
+// Auth::routes();
