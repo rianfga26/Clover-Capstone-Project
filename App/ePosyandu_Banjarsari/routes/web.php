@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Livewire\AdminDusun;
+use App\Http\Livewire\DusunPosyandu;
+use App\Http\Livewire\PendaftaranAnggota;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,13 +51,9 @@ Route::get('/admin/dashboard', function () {
     return view('admin.index');
 })->name('admin.index');    
 
-Route::get('/admin/dusun-posyandu', function () {
-    return view('admin.dusun-posyandu');
-})->name('admin.dusun-posyandu');
+Route::get('/admin/dusun-posyandu', DusunPosyandu::class)->name('admin.dusun-posyandu');
 
-Route::get('/admin/dusun', function () {
-    return view('admin.dusun');
-})->name('admin.dusun');
+Route::get('/admin/dusun', AdminDusun::class)->name('admin.dusun');
 
 Route::get('/admin/jadwal-kegiatan', function () {
     return view('admin.jadwal-kegiatan');
@@ -64,9 +63,7 @@ Route::get('/admin/dokumentasi', function () {
     return view('admin.dokumentasi');
 })->name('admin.dokumentasi');    
 
-Route::get('/admin/pendaftaran-anggota-posyandu', function () {
-    return view('admin.pendaftaran-anggota');
-})->name('admin.pendaftaran');    
+Route::get('/admin/pendaftaran-anggota-posyandu', PendaftaranAnggota::class)->name('admin.pendaftaran');    
 
 // Admin Master - Page
 Route::get('/admin/kategori/posyandu', function () {
