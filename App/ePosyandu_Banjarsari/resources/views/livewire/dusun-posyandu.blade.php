@@ -156,7 +156,6 @@
         </div>
     </div>
 </div>
-
 <script>
     window.livewire.on('hapusModal', () => {
             $('#hapusModal').modal('hide');
@@ -168,3 +167,4 @@
         });
 </script>
 </div>
+

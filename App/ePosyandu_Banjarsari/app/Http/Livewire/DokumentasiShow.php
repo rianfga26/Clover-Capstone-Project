@@ -139,6 +139,6 @@ class DokumentasiShow extends Component
         $kategoriOptions = Dokumentasimaster::pluck('nama')->toArray();
        
         return view('livewire.dokumentasi-show', compact('dokumentasis', 'kategoriOptions'))
-        ->layout('layouts.dokumentasi');
+        ->extends('layouts.master-admin')->section('body');
     }
 }

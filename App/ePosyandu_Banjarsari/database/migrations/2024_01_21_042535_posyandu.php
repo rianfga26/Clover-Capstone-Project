@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('posyandu', function(Blueprint $table){
-            $table->integer('nik')->length(16)->unsigned();
-            $table->integer('nkk', 16);
+            $table->string('nik')->length(20)->primary();
+            $table->string('nkk', 20);
             $table->string('nama', 50);
             $table->string('tempat_lahir', 50);
             $table->date('tgl_lahir');

@@ -2,11 +2,18 @@
 
 use App\Http\Livewire\AdminDusun;
 use App\Http\Livewire\DusunPosyandu;
-use App\Http\Livewire\PendaftaranAnggota;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
-
-
+use App\Http\Controllers\HomeController;
+use App\Http\Livewire\PendaftaranAnggota;
+use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\PosyanduController;
+use App\Http\Controllers\DokumentasisController;
+use App\Http\Controllers\DokumentasimasterController;
+use App\Http\Livewire\DokumentasimasterShow;
+use App\Http\Livewire\DokumentasiShow;
+use App\Http\Livewire\JadwalShow;
+use App\Http\Livewire\PosyanduShow;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,14 +28,9 @@ use Illuminate\Support\Facades\Route;
 
 // User Page
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/jadwal', [App\Http\Controllers\JadwalController::class, 'index'])->name('jadwal');
-Route::get('/dusunposyandu', [App\Http\Controllers\DusunposyanduController::class, 'index'])->name('dusunposyandu');
-Route::get('/posyandu', [App\Http\Controllers\PosyanduController::class, 'index'])->name('posyandu');
-Route::get('/dokumentasimaster', [App\Http\Controllers\DokumentasimasterController::class, 'index'])->name('dokumentasimaster');
-Route::get('/dokumentasi', [App\Http\Controllers\DokumentasisController::class, 'index'])->name('dokumentasi');
+Route::get('/', function () {
+    return view('beranda');
+})->name('beranda');
 
 Route::get('/jadwal-kegiatan', function () {
     return view('jadwal-kegiatan');
@@ -50,8 +52,12 @@ Route::get('/kontak', function () {
     return view('kontak');
 })->name('kontak');
 
-
 // Admin Page
+Route::get('/admin/jadwal-kegiatan', JadwalShow::class)->name('admin.jadwal');
+Route::get('/admin/kategori/posyandu', PosyanduShow::class)->name('admin.master.posyandu');
+Route::get('/admin/kategori/dokumentasi', DokumentasimasterShow::class)->name('admin.master.dokumentasi');
+Route::get('/admin/dokumentasi', DokumentasiShow::class)->name('admin.dokumentasi');
+
 Route::get('/admin/login', function () {
     return view('admin.login');
 })->name('login');
@@ -61,25 +67,24 @@ Route::get('/admin/dashboard', function () {
 })->name('admin.index');    
 
 Route::get('/admin/dusun-posyandu', DusunPosyandu::class)->name('admin.dusun-posyandu');
-
 Route::get('/admin/dusun', AdminDusun::class)->name('admin.dusun');
+Route::get('/admin/pendaftaran-anggota-posyandu', PendaftaranAnggota::class)->name('admin.pendaftaran');  
 
-Route::get('/admin/jadwal-kegiatan', function () {
-    return view('admin.jadwal-kegiatan');
-})->name('admin.jadwal');
+// Route::get('/admin/jadwal-kegiatan', function () {
+//     return view('admin.jadwal-kegiatan');
+// })->name('admin.jadwal');
 
-Route::get('/admin/dokumentasi', function () {
-    return view('admin.dokumentasi');
-})->name('admin.dokumentasi');    
-
-Route::get('/admin/pendaftaran-anggota-posyandu', PendaftaranAnggota::class)->name('admin.pendaftaran');    
+// Route::get('/admin/dokumentasi', function () {
+//     return view('admin.dokumentasi');
+// })->name('admin.dokumentasi');      
 
 // Admin Master - Page
-Route::get('/admin/kategori/posyandu', function () {
-    return view('admin.master.posyandu');
-})->name('admin.master.posyandu');
+// Route::get('/admin/kategori/posyandu', function () {
+//     return view('admin.master.posyandu');
+// })->name('admin.master.posyandu');
 
-Route::get('/admin/kategori/dokumentasi', function () {
-    return view('admin.master.dokumentasi');
-})->name('admin.master.dokumentasi');
+// Route::get('/admin/kategori/dokumentasi', function () {
+//     return view('admin.master.dokumentasi');
+// })->name('admin.master.dokumentasi');
 
+// Auth::routes();

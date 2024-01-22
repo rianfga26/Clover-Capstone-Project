@@ -1,4 +1,4 @@
-<div>
+<div class="page-heading">
     
 @include('livewire.jadwalmodal')
     <div class="page-title">
@@ -73,5 +73,14 @@
         </div>
         
     </section>
-
+    <script>
+        window.addEventListener('close-modal', event => {
+     
+            $('#jadwalModal').modal('hide');
+            $('#updateJadwalModal').modal('hide');
+            $('#deleteJadwalModal').modal('hide');
+            $('.modal-backdrop').remove();
+            $('.modal-backdrop').remove();
+        })
+    </script>
 </div>

@@ -99,6 +99,6 @@ class JadwalShow extends Component
     {
         $jadwals = Jadwal::where('judul', 'like', '%'.$this->search.'%')->orderBy('id','DESC')->paginate(3);
         //$jadwals = Jadwal::select('id','name','email','course')->get();
-        return view('livewire.jadwal-show', ['jadwals' => $jadwals]);
+        return view('livewire.jadwal-show', ['jadwals' => $jadwals])->extends('layouts.master-admin')->section('body');
     }
 }

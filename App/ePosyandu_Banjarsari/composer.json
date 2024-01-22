@@ -10,12 +10,8 @@
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
-<<<<<<< HEAD
-        "livewire/livewire": "^2.12"  
-=======
         "laravel/ui": "^4.4",
         "livewire/livewire": "^2.12"
->>>>>>> 961a66c8f69d95524b4c50b628615e2b2a92c1a8
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
