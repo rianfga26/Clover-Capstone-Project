@@ -4,14 +4,14 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="posyanduModalLabel">Buat Data Posyandu</h5>
+                <h5 class="modal-title" id="posyanduModalLabel">Tambah Data Kategori Posyandu</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                     wire:click="closeModal"></button>
             </div>
             <form wire:submit.prevent="savePosyandu">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label>Nama Posyandu</label>
+                        <label>Kategori Posyandu</label>
                         <input type="text" wire:model="nama" class="form-control">
                         @error('nama') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
@@ -19,11 +19,6 @@
                         <label>Deskripsi</label>
                         <input type="text" wire:model="deskripsi" class="form-control">
                         @error('deskripsi') <span class="text-danger">{{ $message }}</span> @enderror
-                    </div>
-                    <div class="mb-3">
-                    <label>Tanggal dibuat</label>
-                    <input type="date" wire:model="birthdate" class="form-control">
-                    @error('birthdate') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -42,14 +37,14 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="updatePosyanduModalLabel">Ubah Data Posyandu</h5>
+                <h5 class="modal-title" id="updatePosyanduModalLabel">Ubah Kategori sPosyandu</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" wire:click="closeModal"
                     aria-label="Close"></button>
             </div>
             <form wire:submit.prevent="updatePosyandu">
             <div class="modal-body">
                     <div class="mb-3">
-                        <label>Nama Posyandu</label>
+                        <label>Kategori Posyandu</label>
                         <input type="text" wire:model="nama" class="form-control">
                         @error('nama') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
@@ -57,11 +52,6 @@
                         <label>Deskripsi</label>
                         <input type="text" wire:model="deskripsi" class="form-control">
                         @error('deskripsi') <span class="text-danger">{{ $message }}</span> @enderror
-                    </div>
-                    <div class="mb-3">
-                    <label>Tanggal dibuat</label>
-                    <input type="date" wire:model="birthdate" class="form-control">
-                    @error('birthdate') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -81,7 +71,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="deletePosyanduModalLabel">Hapus Data Posyandu</h5>
+                <h5 class="modal-title" id="deletePosyanduModalLabel">Hapus Kategori Posyandu</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" wire:click="closeModal"
                     aria-label="Close"></button>
             </div>

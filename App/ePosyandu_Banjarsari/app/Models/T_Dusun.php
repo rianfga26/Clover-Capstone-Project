@@ -16,4 +16,9 @@ class T_Dusun extends Model
     {
         return $this->hasMany(T_Posyandu::class);
     }
+
+    public function users()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

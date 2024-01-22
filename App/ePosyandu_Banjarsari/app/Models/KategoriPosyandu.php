@@ -9,10 +9,13 @@ class KategoriPosyandu extends Model
 {
     use HasFactory;
 
-    protected $table = 'posyandus';
+    protected $table = 'p_kategori';
     protected $fillable = [
         'nama',
-        'deskripsi',
-        'birthdate',
+        'deskripsi'
     ];
+
+    public function posyandu(){
+        return $this->belongsTo(Posyandu::class);
+    }
 }

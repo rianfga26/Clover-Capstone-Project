@@ -14,6 +14,10 @@ class T_Posyandu extends Model
 
     public function t_dusun()
     {
-        return $this->belongsTo(T_Dusun::class);
+        return $this->belongsTo(T_Dusun::class, 't_dusun_id', 'id');
+    }
+
+    public function posyandu(){
+        return $this->belongsTo(Posyandu::class);
     }
 }

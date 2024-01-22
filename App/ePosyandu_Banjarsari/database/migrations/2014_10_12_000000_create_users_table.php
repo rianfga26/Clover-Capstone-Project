@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('username',50);
             $table->string('email',60)->unique();
-            $table->enum('tipe_admin', ['posyandu', 'dusun']);
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password',50);
+            $table->enum('tipe_admin', ['utama', 'dusun']);
+            $table->string('password', 255);
             $table->rememberToken();
             $table->timestamps();
         });

@@ -25,7 +25,7 @@
             @csrf
             <div class="flex">
             <div class="w-full bg-white px-5 pt-2 sm:px-10 h-screen sm:w-1/2">
-                <a href="beranda.html" class="flex items-center gap-2" id="logo">
+                <a href="{{ route('beranda') }}" class="flex items-center gap-2" id="logo">
                     <img src="{{ asset('img/logo.png') }}" alt="">
                     <p class="font-['Source_Sans_3'] font-semibold text-[#018CB5] text-base md:text-xl">ePosyandu Banjarsari</p>
                 </a>

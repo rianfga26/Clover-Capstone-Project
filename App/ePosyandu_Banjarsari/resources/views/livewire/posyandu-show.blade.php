@@ -40,9 +40,8 @@
                             <th>nama</th>
 
                             <th>deskripsi</th>
-                            <th>tanggal dibuat</th>
 
-                            <th>Status</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,7 +49,6 @@
                             <tr>
                                 <td>{{ $posyandu->nama }}</td>
                                 <td>{{ $posyandu->deskripsi }}</td>
-                                <td>{{ $posyandu->birthdate }}</td>
                                 <td>
                                     <button type="button" data-bs-toggle="modal" data-bs-target="#updatePosyanduModal"
                                         wire:click="editPosyandu({{ $posyandu->id }})"

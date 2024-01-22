@@ -62,6 +62,7 @@
                             <th class="text-capitalize">alamat</th>
                             <th class="text-capitalize">dusun</th>
                             <th class="text-capitalize">rt/rw</th>
+                            <th class="text-capitalize">kategori</th>
                             <th class="text-capitalize">tanggal dibuat</th>
                             <th class="text-capitalize">Aksi</th>
                         </tr>
@@ -76,8 +77,11 @@
                                 <td>{{ $data->tempat_lahir }}</td>
                                 <td>{{ date('d-M-Y', strtotime($data->tgl_lahir)) }}</td>
                                 <td>{{ $data->alamat }}</td>
-                                <td></td>
+                                @foreach ($data->posyandu[0]->t_dusun()->get() as $dusun)
+                                    <td>{{ $dusun->nama }}</td>
+                                @endforeach
                                 <td>{{ $data->rt_rw }}</td>
+                                <td>{{ $data->kategori[0]->nama }}</td>
                                 <td>{{ date('d-m-Y', strtotime($data->created_at)) }}</td>
                                 <td>
                                     <button type="button" class="btn btn-warning btn-sm"
@@ -200,6 +204,18 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="inputGroupSelect01">Pilih Kategori</label>
+                                <select class="form-select" id="inputGroupSelect01" wire:model="p_kategori" name="p_kategori">
+                                    <option selected="">Choose...</option>
+                                    @foreach ($kategori as $item)
+                                    <option value="{{$item->id }}">{{$item->nama }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            @error('p_kategori')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -210,7 +226,7 @@
                 </div>
             </div>
         </div>
-
+        
         {{-- modal edit --}}
         <div wire:ignore.self class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">

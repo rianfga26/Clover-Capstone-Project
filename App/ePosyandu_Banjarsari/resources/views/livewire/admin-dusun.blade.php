@@ -71,7 +71,9 @@
                         @foreach ($users as $item => $user)
                             <tr>
                                 <td>{{ $users->firstItem() + $loop->index }}</td>
-                                <td>{{ $user->t_dusun_id }}</td>
+                                @foreach ($user->dusun()->get() as $dusun)
+                                    <td>{{ $dusun->nama }}</td>
+                                @endforeach
                                 <td>{{ $user->username }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->tipe_admin }}</td>
@@ -108,11 +110,11 @@
                         <div class="modal-body">
                             <div class="input-group mb-3">
                                 <label class="input-group-text" for="inputGroupSelect01">Pilih Dusun</label>
-                                <select class="form-select" id="inputGroupSelect01">
+                                <select class="form-select" wire:model="dusun" name="dusun" id="inputGroupSelect01">
                                     <option selected="">Choose...</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    @foreach ($dusuns as $item)
+                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="mb-3">

@@ -2,11 +2,13 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Posyandu;
-use App\Models\T_Posyandu;
 use App\Models\T_Dusun;
 use Livewire\Component;
+use App\Models\Posyandu;
+use App\Models\T_Posyandu;
 use Livewire\WithPagination;
+use App\Models\KategoriPosyandu;
+use Illuminate\Support\Facades\Auth;
 
 class PendaftaranAnggota extends Component
 {
@@ -14,7 +16,7 @@ class PendaftaranAnggota extends Component
 
     public $ids;
     public $posyanduId;
-    public $p_kategori_id;
+    public $p_kategori;
     public $nik;
     public $nkk;
     public $nama;
@@ -33,7 +35,8 @@ class PendaftaranAnggota extends Component
         'tgl_lahir' => 'required|date',
         'rt_rw' => 'required',
         'umur' => 'required|integer',
-        'alamat' => 'required'
+        'alamat' => 'required',
+        'p_kategori' => 'required'
     ];
  
     public function updated($fields)
@@ -45,7 +48,7 @@ class PendaftaranAnggota extends Component
         $this->nik= '';
         $this->nkk= '';
         $this->posyanduId= '';
-        $this->p_kategori_id= '';
+        $this->p_kategori= '';
         $this->nama= '';
         $this->tempat_lahir= '';
         $this->tgl_lahir= '';
@@ -61,9 +64,9 @@ class PendaftaranAnggota extends Component
         $data = [
             'nik' => $validatedData['nik'],
             't_posyandu_id' => $validatedData['posyanduId'],
-            'p_kategori_id' => NULL,
+            'p_kategori_id' => $validatedData['p_kategori'],
             'nkk' => $validatedData['nkk'],
-            'user_id' => 2,
+            'user_id' => Auth::user()->id,
             'nama' => $validatedData['nama'],
             'tempat_lahir' => $validatedData['tempat_lahir'],
             'tgl_lahir' => $validatedData['tgl_lahir'],
@@ -82,7 +85,7 @@ class PendaftaranAnggota extends Component
         $this->nik= $anggota->nik;
         $this->nkk= $anggota->nkk;
         $this->posyanduId= $anggota->t_posyandu_id;
-        $this->p_kategori_id= $anggota->p_kategori_id;
+        $this->p_kategori= $anggota->p_kategori_id;
         $this->nama= $anggota->nama;
         $this->tempat_lahir= $anggota->tempat_lahir;
         $this->tgl_lahir= $anggota->tgl_lahir;
@@ -121,8 +124,9 @@ class PendaftaranAnggota extends Component
 
     public function render()
     {
-        $datas = Posyandu::orderBy('created_at', 'desc')->paginate(10);
+        $datas = Posyandu::orderBy('created_at', 'desc')->with('kategori','posyandu')->paginate(10);
         $posyandu = T_Posyandu::all();
-        return view('livewire.pendaftaran-anggota', compact('posyandu','datas'))->extends('layouts.master-admin')->section('body');
+        $kategori = KategoriPosyandu::all();
+        return view('livewire.pendaftaran-anggota', compact('posyandu','datas','kategori'))->extends('layouts.master-admin')->section('body');
     }
 }

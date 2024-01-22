@@ -18,6 +18,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        't_dusun_id',
         'email',
         'password',
         'username',
@@ -43,4 +44,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function dusun()
+    {
+        return $this->hasMany(T_Dusun::class, 'id', 't_dusun_id');
+    }
 }
