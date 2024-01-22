@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 
 
 
@@ -24,7 +25,8 @@ use App\Http\Controllers\AuthController;
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'authenticated']);
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth'); //
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('admin.index'); //
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -56,13 +58,13 @@ Route::get('/kontak', function () {
 
 
 // Admin Page
-Route::get('/admin/login', function () {
-    return view('admin.login');
-})->name('login');
+// Route::get('/admin/login', function () {
+//     return view('admin.login');
+// })->name('login');
 
-Route::get('/admin/dashboard', function () {
-    return view('admin.index');
-})->name('admin.index');    
+// Route::get('/admin/dashboard', function () {
+//     return view('admin.index');
+// })->name('admin.index');    
 
 Route::get('/admin/dusun-posyandu', function () {
     return view('admin.dusun-posyandu');
