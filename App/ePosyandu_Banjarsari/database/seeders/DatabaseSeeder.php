@@ -6,6 +6,8 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -15,11 +17,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+         // Seeder untuk tipe admin 'posyandu'
+         User::create([
+            'username' => 'posyandu',
+            'email' => 'posyandu@gmail.com',
+            'tipe_admin' => 'posyandu',
+            'password' => Hash::make('password123'),
+            
+        ]);
+
+        // Seeder untuk tipe admin 'dusun'
         User::create([
-            'username' => 'testing',
-            'email' => 'test@gmail.com',
-            'tipe_admin' => 'utama',
-            'password' => Hash::make('123')
+
+            'username' => 'dusun',
+            'email' => 'dusun@gmail.com',
+            'tipe_admin' => 'dusun',
+            'password' => Hash::make('password123'),
+            
+
         ]);
     }
 }

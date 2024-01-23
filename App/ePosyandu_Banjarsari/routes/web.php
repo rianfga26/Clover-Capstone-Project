@@ -57,11 +57,18 @@ Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'authenticated']);
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 // Admin Page
-Route::get('/admin/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('admin.index'); 
+
+Route::get('/admin/dashboard', [DashboardController::class, 'index'])
+    ->name('admin.index')
+    ->middleware(['auth', 'checkrole:posyandu,dusun']);
+
+=======
+
 Route::get('/admin/jadwal-kegiatan', JadwalShow::class)->name('admin.jadwal');
 Route::get('/admin/kategori/posyandu', PosyanduShow::class)->name('admin.master.posyandu');
 Route::get('/admin/kategori/dokumentasi', DokumentasimasterShow::class)->name('admin.master.dokumentasi');
 Route::get('/admin/dokumentasi', DokumentasiShow::class)->name('admin.dokumentasi');
+
 
 // Route::get('/admin/dashboard', function () {
 //     return view('admin.index');
