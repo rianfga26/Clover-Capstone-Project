@@ -43,7 +43,7 @@
                             <th>Foto Dokumentasi</th>
                             <th>tanggal dibuat</th>
                             
-                            <th>Status</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>

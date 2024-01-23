@@ -28,11 +28,13 @@ class DatabaseSeeder extends Seeder
 
         // Seeder untuk tipe admin 'dusun'
         User::create([
+
             'username' => 'dusun',
             'email' => 'dusun@gmail.com',
             'tipe_admin' => 'dusun',
             'password' => Hash::make('password123'),
             
+
         ]);
     }
 }

@@ -12,15 +12,14 @@ class PosyanduShow extends Component
  
     protected $paginationTheme = 'bootstrap';
  
-    public $nama, $deskripsi, $birthdate, $posyandu_id;
+    public $nama, $deskripsi, $posyandu_id;
     public $search = '';
  
     protected function rules()
     {
         return [
             'nama' => 'required|string',
-            'deskripsi' => ['required','string'],
-            'birthdate' => 'required|date',
+            'deskripsi' => ['required','string']
         ];
     }
  
@@ -48,7 +47,6 @@ class PosyanduShow extends Component
             $this->nama = $posyandu->nama;
             $this->deskripsi = $posyandu->deskripsi;
            
-            $this->birthdate = $posyandu->birthdate;
         }else{
             return redirect()->to('/posyandus');
         }
@@ -60,8 +58,7 @@ class PosyanduShow extends Component
  
         Posyandu::where('id',$this->posyandu_id)->update([
             'nama' => $validatedData['nama'],
-            'deskripsi' => $validatedData['deskripsi'],
-            'birthdate' => $validatedData['birthdate'],
+            'deskripsi' => $validatedData['deskripsi']
         ]);
         session()->flash('message','Data Dusun dan Posyandu Telah Diubah');
         $this->resetInput();
@@ -89,7 +86,6 @@ class PosyanduShow extends Component
     {
         $this->nama = '';
         $this->deskripsi = '';
-        $this->birthdate = '';
     }
  
     public function render()

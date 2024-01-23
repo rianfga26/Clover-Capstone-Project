@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('nama', 50);
             $table->string('tempat_lahir', 50);
             $table->date('tgl_lahir');
-            $table->string('alamat', 50);
+            $table->string('alamat', 255);
             $table->string('rt_rw', 50);
             $table->integer('umur');
             $table->timestamps();

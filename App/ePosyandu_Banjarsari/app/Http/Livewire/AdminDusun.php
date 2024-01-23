@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\User;
+use App\Models\T_Dusun;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -12,12 +13,14 @@ class AdminDusun extends Component
 
     public $ids;
     public $username;
+    public $dusun;
     public $email;
     public $password;
     public $password_confirmation;
  
     protected $rules = [
         'username' => 'required|min:6',
+        'dusun' => 'required',
         'email' => 'required|email|unique:users,email',
         'password' => 'required|min:8',
         'password_confirmation' => 'required|same:password|min:8',
@@ -29,8 +32,10 @@ class AdminDusun extends Component
     }
 
     public function clearForm(){
+        $this->ids = '';
         $this->username = '';
         $this->email = '';
+        $this->dusun = '';
         $this->password = '';
         $this->password_confirmation = '';
     }
@@ -40,6 +45,8 @@ class AdminDusun extends Component
         
         $validatedData = $this->validate();
         $validatedData['tipe_admin'] = 'dusun';
+        $validatedData['t_dusun_id'] = $validatedData['dusun'];
+
         
         User::create($validatedData);
         $this->clearForm();
@@ -49,6 +56,7 @@ class AdminDusun extends Component
     public function detailAdminDusun($id){
         $user = User::find($id);
         $this->ids= $user->id;
+        $this->dusun= $user->t_dusun_id;
         $this->username= $user->username;
         $this->email= $user->email;
         $this->password= $user->password;
@@ -59,6 +67,7 @@ class AdminDusun extends Component
 
         $this->rules = [
             'username' => 'required|min:6',
+            'dusun' => 'required',
             'email' => 'required|email',
             'password' => 'required|min:8',
         ];
@@ -78,7 +87,8 @@ class AdminDusun extends Component
 
     public function render()
     {
-        $users = User::orderBy('created_at', 'desc')->paginate(5);
-        return view('livewire.admin-dusun', compact('users'))->extends('layouts.master-admin')->section('body');
+        $users = User::orderBy('created_at', 'desc')->where('tipe_admin', 'dusun')->paginate(5);
+        $dusuns = T_Dusun::all();
+        return view('livewire.admin-dusun', compact('users', 'dusuns'))->extends('layouts.master-admin')->section('body');
     }
 }

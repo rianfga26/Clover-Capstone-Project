@@ -12,4 +12,10 @@ class Posyandu extends Model
     protected $table = 'posyandu';
     protected $fillable = ['nik','nkk','t_posyandu_id','p_kategori_id', 'user_id', 'nama', 'tempat_lahir', 'tgl_lahir', 'alamat', 'rt_rw', 'umur'];
 
+    public function kategori(){
+        return $this->hasMany(KategoriPosyandu::class, 'id', 'p_kategori_id');
+    }
+    public function posyandu(){
+        return $this->hasMany(T_Posyandu::class, 'id', 't_posyandu_id');
+    }
 }
