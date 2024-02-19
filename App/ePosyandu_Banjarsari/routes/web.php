@@ -62,8 +62,6 @@ Route::get('/admin/dashboard', [DashboardController::class, 'index'])
     ->name('admin.index')
     ->middleware(['auth', 'checkrole:posyandu,dusun']);
 
-=======
-
 Route::get('/admin/jadwal-kegiatan', JadwalShow::class)->name('admin.jadwal');
 Route::get('/admin/kategori/posyandu', PosyanduShow::class)->name('admin.master.posyandu');
 Route::get('/admin/kategori/dokumentasi', DokumentasimasterShow::class)->name('admin.master.dokumentasi');
