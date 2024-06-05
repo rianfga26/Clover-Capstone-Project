@@ -107,7 +107,7 @@
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
 
-                        @if (auth()->check() && (auth()->user()->tipe_admin == "posyandu" || auth()->user()->tipe_admin == "dusun"))
+                        @if (auth()->check() && (auth()->user()->tipe_admin == "utama" || auth()->user()->tipe_admin == "dusun"))
                         <li class="sidebar-item {{ request()->routeIs('admin.index') ? 'active' : '' }} ">
                             <a href="{{ route('admin.index') }}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
@@ -115,7 +115,7 @@
                             </a>
                         </li>
                         @endif
-                        @if (auth()->user()->tipe_admin == "posyandu")
+                        @if (auth()->user()->tipe_admin == "utama")
                         <li class="sidebar-item {{ request()->routeIs('admin.dusun') ? 'active' : '' }}">
                             <a href="{{ route('admin.dusun') }}" class='sidebar-link'>
                                 <i class="fa-solid fa-user-plus"></i>
@@ -123,7 +123,7 @@
                             </a>
                         </li>
                         @endif
-                        @if (auth()->check() && (auth()->user()->tipe_admin == "posyandu" || auth()->user()->tipe_admin == "dusun"))
+                        @if (auth()->check() && (auth()->user()->tipe_admin == "utama" || auth()->user()->tipe_admin == "dusun"))
                         <li class="sidebar-item {{ request()->routeIs('admin.pendaftaran') ? 'active' : '' }} ">
                             <a href="{{ route('admin.pendaftaran') }}" class='sidebar-link'>
                                 <i class="bi bi-grid-1x2-fill"></i>
@@ -134,7 +134,7 @@
                         </li>
                         @endif
 
-                        @if (auth()->user()->tipe_admin == "posyandu")
+                        @if (auth()->user()->tipe_admin == "utama")
                         <li class="sidebar-item {{ request()->is('admin/kategori/*') ? 'active' : '' }}  has-sub ">
                             <a href="javascript:void(0)" class='sidebar-link'>
                                 <i class="bi bi-stack"></i>
@@ -160,7 +160,7 @@
                         </li>
                         @endif
 
-                        @if (auth()->user()->tipe_admin == "posyandu")
+                        @if (auth()->user()->tipe_admin == "utama")
                         <li class="sidebar-item {{ request()->routeIs('admin.dusun-posyandu') ? 'active' : '' }} ">
                             <a href="{{ route('admin.dusun-posyandu') }}" class='sidebar-link'>
                                 <i class="bi bi-cloud-arrow-up-fill"></i>
@@ -170,7 +170,7 @@
 
                         </li>
                         @endif
-                        @if (auth()->user()->tipe_admin == "posyandu")
+                        @if (auth()->user()->tipe_admin == "utama")
                         <li class="sidebar-item {{ request()->routeIs('admin.jadwal') ? 'active' : '' }} ">
                             <a href="{{ route('admin.jadwal') }}" class='sidebar-link'>
                                 <i class="fa-solid fa-calendar-week"></i>
@@ -181,7 +181,7 @@
                         </li>
                         @endif
 
-                        @if (auth()->user()->tipe_admin == "posyandu" || auth()->user()->tipe_admin == "dusun")
+                        @if (auth()->user()->tipe_admin == "utama" || auth()->user()->tipe_admin == "dusun")
                         <li class="sidebar-item {{ request()->routeIs('admin.dokumentasi') ? 'active' : '' }} ">
                             <a href="{{ route('admin.dokumentasi') }}" class='sidebar-link'>
                                 <i class="bi bi-image-fill"></i>

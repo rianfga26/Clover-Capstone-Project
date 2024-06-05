@@ -60,7 +60,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/admin/dashboard', [DashboardController::class, 'index'])
     ->name('admin.index')
-    ->middleware(['auth', 'checkrole:posyandu,dusun']);
+    ->middleware(['auth', 'checkrole:utama,dusun']);
 
 Route::get('/admin/jadwal-kegiatan', JadwalShow::class)->name('admin.jadwal');
 Route::get('/admin/kategori/posyandu', PosyanduShow::class)->name('admin.master.posyandu');
