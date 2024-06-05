@@ -60,21 +60,29 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/admin/dashboard', [DashboardController::class, 'index'])
     ->name('admin.index')
-    ->middleware(['auth', 'checkrole:posyandu,dusun']);
+    ->middleware(['auth', 'checkrole:utama,dusun']);
 
-Route::get('/admin/jadwal-kegiatan', JadwalShow::class)->name('admin.jadwal');
-Route::get('/admin/kategori/posyandu', PosyanduShow::class)->name('admin.master.posyandu');
-Route::get('/admin/kategori/dokumentasi', DokumentasimasterShow::class)->name('admin.master.dokumentasi');
-Route::get('/admin/dokumentasi', DokumentasiShow::class)->name('admin.dokumentasi');
-
-
-// Route::get('/admin/dashboard', function () {
-//     return view('admin.index');
-// })->name('admin.index');    
-
-Route::get('/admin/dusun-posyandu', DusunPosyandu::class)->name('admin.dusun-posyandu');
-Route::get('/admin/dusun', AdminDusun::class)->name('admin.dusun');
-Route::get('/admin/pendaftaran-anggota-posyandu', PendaftaranAnggota::class)->name('admin.pendaftaran');  
+Route::group(['prefix' => 'admin'], function(){
+    // Utama middleware
+    Route::group(['middleware' => 'utama'], function(){
+        Route::get('jadwal-kegiatan', JadwalShow::class)->name('admin.jadwal');
+        Route::get('kategori/posyandu', PosyanduShow::class)->name('admin.master.posyandu');
+        Route::get('kategori/dokumentasi', DokumentasimasterShow::class)->name('admin.master.dokumentasi');
+        Route::get('dokumentasi', DokumentasiShow::class)->name('admin.dokumentasi');
+    });
+    
+    // Dusun middleware
+    Route::group(['middleware' => 'dusun'], function(){
+        Route::get('dusun-posyandu', DusunPosyandu::class)->name('admin.dusun-posyandu');
+        Route::get('dusun', AdminDusun::class)->name('admin.dusun');
+        Route::get('pendaftaran-anggota-posyandu', PendaftaranAnggota::class)->name('admin.pendaftaran');  
+    });
+    
+    // Route::get('/admin/dashboard', function () {
+    //     return view('admin.index');
+    // })->name('admin.index');    
+    
+});
 
 // Route::get('/admin/jadwal-kegiatan', function () {
 //     return view('admin.jadwal-kegiatan');
