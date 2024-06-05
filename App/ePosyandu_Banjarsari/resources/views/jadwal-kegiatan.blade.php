@@ -5,7 +5,7 @@
 <section id="subMenu" class="bg-cover w-full px-4 h-1/4 py-5 lg:py-7 lg:px-16" style="background: url({{ asset('img/bg-submenu.png') }})">
     <h1 class="font-['Poppins'] text-xl font-semibold md:text-[32px] lg:text-[40px]">Daftar Kegiatan Posyandu</h1>
     <div class="flex gap-2 mt-4">
-        <a href="" class="font-['Source_Sans_3'] text-sm font-medium text-[#00475C] hover:underline md:text-xl lg:text-[18px]">Beranda</a>
+        <a href="/" class="font-['Source_Sans_3'] text-sm font-medium text-[#00475C] hover:underline md:text-xl lg:text-[18px]">Beranda</a>
         <img src="img/icons/chevron-right.svg" alt="" class="w-3 md:w-5 lg:w-3">
         <span class="font-['Source_Sans_3'] text-sm font-normal md:text-xl lg:text-[18px]">Jadwal Kegiatan</span>
     </div>
@@ -22,13 +22,19 @@
                 <div class="mb-3 w-full">
                     <label for="namaPosyandu" class="font-['Poppins'] font-normal text-sm text-[#7E7E7E] lg:text-base">Nama Posyandu:</label>
                     <select name="" id="namaPosyandu" class="w-full mt-2 font-normal font-['Poppins'] text-sm border py-2 px-2 rounded-sm">
+                        @foreach ($posyandu as $items)
                         <option selected>-Pilih Posyandu-</option>
+                        <option value="{{ $items->id }}">{{ $items->nama }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="mb-3 w-full">
                     <label for="namaDusun" class="font-['Poppins'] font-normal text-sm text-[#7E7E7E] lg:text-base">Nama Dusun:</label>
                     <select name="" id="namaDusun" class="w-full mt-2 font-normal font-['Poppins'] text-sm border py-2 px-2 rounded-sm">
+                        @foreach ($dusun as $item)
                         <option selected>-Pilih Dusun-</option>
+                        <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="mb-3 w-full">
@@ -39,14 +45,16 @@
             </form>
         </div>
         <h3 class="mt-5 font-['Poppins'] font-semibold text-base text-[#7E7E7E] md:hidden">Hasil : </h3>
+       
         <div class="w-full md:w-2/3 mt-3 md:mt-0">
+             @forelse ($jadwals as $jadwal)
             <div class="bg-white rounded-lg px-2 py-2 border shadow mt-2 md:mt-0 md:px-6 md:py-4">
+            
                 <h5 class="font-['Poppins'] font-semibold text-[#1E5562] text-sm mb-1 md:text-base lg:text-xl">
-                    Penimbangan Bayi
+                {{ $jadwal->judul }}
                 </h5>
                 <p class="font-medium text-[#ADADAD] text-[10px] font-['Poppins'] md:text-sm md:mt-3">
-                    Pelayanan kepada balita dan anak dengan melakukan penimbangan
-                    agar bisa dipantau pertumbuhan dan perkembangan balita dan anak
+                {{ $jadwal->deskripsi }}
                 </p>
                 <div
                     class="flex justify-between items-center mt-2 mb-1 md:mt-4 md:mb-2 md:justify-start md:gap-5">
@@ -56,18 +64,23 @@
                     <div class="flex items-center gap-1">
                         <img src="img/icons/map-pin.svg" alt="" class="w-3 md:w-5" />
                         <p class="font-medium text-[#ADADAD] text-[8px] font-['Poppins'] md:text-[10px] lg:text-sm">
-                            Posyandu Melati
+                        {{ $jadwal->lokasi }}
                         </p>
                     </div>
                     <div class="flex items-center gap-1">
                         <img src="img/icons/clock.svg" alt="" class="w-3 md:w-5" />
                         <p class="font-medium text-[#ADADAD] text-[8px] font-['Poppins'] md:text-[10px] lg:text-sm">
-                            Rabu, 10 Januari 2024
+                        {{ $jadwal->birthdate }}
                         </p>
                     </div>
                 </div>
+
             </div>
+            <br>
+            @empty
+        @endforelse
         </div>
+        
     </div>
 </section>
 @endsection

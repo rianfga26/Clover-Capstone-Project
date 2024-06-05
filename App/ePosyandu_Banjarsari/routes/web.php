@@ -14,6 +14,11 @@ use App\Http\Livewire\DokumentasiShow;
 use App\Http\Livewire\JadwalShow;
 use App\Http\Livewire\PosyanduShow;
 
+use App\Models\Dokumentasimaster;
+use App\Models\Dokumentasi;
+use App\Models\Jadwal;
+use App\Models\T_Posyandu;
+use App\Models\T_Dusun;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,12 +32,17 @@ use App\Http\Livewire\PosyanduShow;
 
 // User Page
 Route::get('/', function () {
-    return view('beranda');
+    $jadwals = Jadwal::all();
+    $dokumentasimasters = Dokumentasimaster::all();
+    return view('beranda', compact('jadwals','dokumentasimasters')) ;
 })->name('beranda');
 
 
 Route::get('/jadwal-kegiatan', function () {
-    return view('jadwal-kegiatan');
+    $jadwals = Jadwal::all();
+    $posyandu = T_Posyandu::all();
+    $dusun = T_Dusun::all();
+    return view('jadwal-kegiatan', compact('jadwals', 'posyandu', 'dusun'));
 })->name('jadwal_kegiatan');
 
 Route::get('/jadwal-kegiatan/detail/{judul}', function ($judul = null) {
@@ -40,11 +50,13 @@ Route::get('/jadwal-kegiatan/detail/{judul}', function ($judul = null) {
 })->name('jadwal_kegiatan.detail');
 
 Route::get('/dokumentasi', function () {
-    return view('dokumentasi');
+    $dokumentasimasters = Dokumentasimaster::all();
+    return view('dokumentasi', ['dokumentasimasters' => $dokumentasimasters]);
 })->name('dokumentasi');
 
 Route::get('/dokumentasi/detail/{judul}', function ($judul = null) {
-    return view('detail-dokumentasi', compact('judul'));
+    $dokumentasis = Dokumentasi::all();
+    return view('detail-dokumentasi',compact('dokumentasis', 'judul'));
 })->name('dokumentasi.detail');
 
 Route::get('/kontak', function () {

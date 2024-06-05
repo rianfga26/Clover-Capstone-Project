@@ -24,7 +24,7 @@
                 kesehatan lainnya.
             </p>
             <div class="my-4 md:my-6 lg:my-8">
-                <a href=""
+                <a href="/jadwal-kegiatan"
                     class="bg-[#018CB5] text-white font-['Poppins'] text-[10px] py-2 px-3 rounded md:text-base md:px-5">Lihat
                     Jadwal</a>
             </div>
@@ -92,13 +92,14 @@
             </p>
 
             <!-- list jadwal -->
+            @forelse ($jadwals as $jadwal)
             <div class="bg-white rounded-lg px-2 py-2 shadow mt-6 md:px-6 md:py-4">
+                
                 <h5 class="font-['Poppins'] font-semibold text-[#1E5562] text-[8px] mb-1 md:text-base">
-                    Penimbangan Bayi
+                {{ $jadwal->judul }}
                 </h5>
                 <p class="font-medium text-[#ADADAD] text-[8px] font-['Poppins'] md:text-sm">
-                    Pelayanan kepada balita dan anak dengan melakukan penimbangan
-                    agar bisa dipantau pertumbuhan dan perkembangan balita dan anak
+                {{ $jadwal->deskripsi }}
                 </p>
                 <div
                     class="flex justify-between items-center mt-2 mb-1 md:mt-4 md:mb-2 md:justify-start md:gap-5">
@@ -108,45 +109,21 @@
                     <div class="flex items-center gap-1">
                         <img src="img/icons/map-pin.svg" alt="" class="w-3 md:w-5" />
                         <p class="font-medium text-[#ADADAD] text-[8px] font-['Poppins'] md:text-sm">
-                            Posyandu Melati
+                        {{ $jadwal->lokasi }}
                         </p>
                     </div>
                     <div class="flex items-center gap-1">
                         <img src="img/icons/clock.svg" alt="" class="w-3 md:w-5" />
                         <p class="font-medium text-[#ADADAD] text-[8px] font-['Poppins'] md:text-sm">
-                            Rabu, 10 Januari 2024
+                        {{ $jadwal->birthdate }}
                         </p>
                     </div>
                 </div>
+                
             </div>
-
-            <div class="bg-white rounded-lg px-2 py-2 shadow mt-6 md:px-6 md:py-4">
-                <h5 class="font-['Poppins'] font-semibold text-[#1E5562] text-[8px] mb-1 md:text-base">
-                    Penimbangan Bayi
-                </h5>
-                <p class="font-medium text-[#ADADAD] text-[8px] font-['Poppins'] md:text-sm">
-                    Pelayanan kepada balita dan anak dengan melakukan penimbangan
-                    agar bisa dipantau pertumbuhan dan perkembangan balita dan anak
-                </p>
-                <div
-                    class="flex justify-between items-center mt-2 mb-1 md:mt-4 md:mb-2 md:justify-start md:gap-5">
-                    <a href=""
-                        class="bg-[#018CB5] rounded-full px-2 py-1 text-white text-[6px] font-['Poppins'] md:text-sm md:px-4 md:py-2">Lihat
-                        Detail</a>
-                    <div class="flex items-center gap-1">
-                        <img src="img/icons/map-pin.svg" alt="" class="w-3 md:w-5" />
-                        <p class="font-medium text-[#ADADAD] text-[8px] font-['Poppins'] md:text-sm">
-                            Posyandu Melati
-                        </p>
-                    </div>
-                    <div class="flex items-center gap-1">
-                        <img src="img/icons/clock.svg" alt="" class="w-3 md:w-5" />
-                        <p class="font-medium text-[#ADADAD] text-[8px] font-['Poppins'] md:text-sm">
-                            Rabu, 10 Januari 2024
-                        </p>
-                    </div>
-                </div>
-            </div>
+                @empty
+                @endforelse 
+           
 
             <a href="{{ route('jadwal_kegiatan') }}"
                 class="flex gap-2 border border-2 border-black group hover:bg-black bg-transparent rounded-full px-3 py-0 items-center my-10 md:my-16 md:px-4 md:py-2">
@@ -170,30 +147,21 @@
         <p class="text-[#018CB5] font-['Poppins'] font-medium text-[10px] mt-5 md:text-base">Berikut adalah foto dokumentasi ePosyandu desa benjarsari.</p>
 
         <div class="flex justify-center flex-wrap items-center px-5 mt-10 lg:px-20 lg:mt-20 gap-5">
-            <a href="{{ route('dokumentasi.detail', 'lansia') }}" class="relative flex justify-center items-center cursor-pointer border-4 border-gray-300 rounded md:w-3/4 lg:w-auto">
-                <img src="img/gallery/galeri1.png" alt="" class="w-full lg:w-[340px]">
+        @forelse ($dokumentasimasters as $dokumentasimaster)
+            <a href="{{ route('dokumentasi.detail', ['judul' => $dokumentasimaster->nama]) }}" class="relative flex justify-center items-center cursor-pointer border-4 border-gray-300 rounded md:w-3/4 lg:w-auto">
+                @if ($dokumentasimaster->image)
+                <img src="{{ asset('storage/' . $dokumentasimaster->image) }}" alt="" class="w-full lg:w-[340px]">
+                @else
+                No Image
+                @endif
                 <div class="absolute inset-0 bg-black opacity-40"></div>
                 <div class="absolute m-auto left-0 right-0">
-                    <h5 class="mb-1 sm:mb-2 text-white font-['Poppins'] font-semibold text-2xl md:text-[60px] lg:text-[40px] ">Lansia</h5>
-                    <p class="text-white font-['Poppins'] font-normal text-sm md:text-xl">Posbindu Lansia</p>
+                    <h5 class="mb-1 sm:mb-2 text-white font-['Poppins'] font-semibold text-2xl md:text-[60px] lg:text-[40px] ">{{ $dokumentasimaster->nama }}</h5>
+                    <p class="text-white font-['Poppins'] font-normal text-sm md:text-xl">{{ $dokumentasimaster->deskripsi }}</p>
                 </div>
             </a>
-            <a href="{{ route('dokumentasi.detail', 'lansia') }}" class="relative flex justify-center items-center cursor-pointer border-4 border-gray-300 rounded md:w-3/4 lg:w-auto">
-                <img src="img/gallery/galeri1.png" alt="" class="w-full lg:w-[340px]">
-                <div class="absolute inset-0 bg-black opacity-40"></div>
-                <div class="absolute m-auto left-0 right-0">
-                    <h5 class="mb-1 sm:mb-2 text-white font-['Poppins'] font-semibold text-2xl md:text-[60px] lg:text-[40px] ">Lansia</h5>
-                    <p class="text-white font-['Poppins'] font-normal text-sm md:text-xl">Posbindu Lansia</p>
-                </div>
-            </a>
-            <a href="{{ route('dokumentasi.detail', 'lansia') }}" class="relative flex justify-center items-center cursor-pointer border-4 border-gray-300 rounded md:w-3/4 lg:w-auto">
-                <img src="img/gallery/galeri1.png" alt="" class="w-full lg:w-[340px]">
-                <div class="absolute inset-0 bg-black opacity-40"></div>
-                <div class="absolute m-auto left-0 right-0">
-                    <h5 class="mb-1 sm:mb-2 text-white font-['Poppins'] font-semibold text-2xl md:text-[60px] lg:text-[40px] ">Lansia</h5>
-                    <p class="text-white font-['Poppins'] font-normal text-sm md:text-xl">Posbindu Lansia</p>
-                </div>
-            </a>
+            @empty
+            @endforelse 
             <div class="w-full">
                 <a href="{{ route('dokumentasi') }}"
                     class="flex w-fit mx-auto gap-2 border border-2 border-black group hover:bg-black bg-transparent rounded-full px-3 py-0 items-center my-10 md:my-16 md:px-4 md:py-2">
@@ -207,6 +175,7 @@
                     </svg>
                 </a>
             </div>
+            
         </div>
     </div>
     
