@@ -1,5 +1,5 @@
 ## ePosyandu Banjarsari
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects.
+The Banjarsari village posyandu website provides health information including data on toddlers, pregnant women, the elderly and posbindu as well as activity documentation, activity schedules and other health articles.
 
 ## Setup & Intallation 
 
