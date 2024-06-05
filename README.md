@@ -27,6 +27,7 @@ npm install
 
 - copy .env.example and rename .env
 - change configuration in env file for example: [DB_DATABASE=eposyandu]
+- Don't forget to create new database `eposyandu` in phpMyAdmin
 
 Run command for database table setup
 ```bash
