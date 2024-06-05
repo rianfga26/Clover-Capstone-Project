@@ -81,7 +81,7 @@
     </main>
 
     <!-- footer -->
-    <footer class="w-full bg-[#2F2F2F]">
+    <footer class="w-full bg-[#2F2F2F] lg:mt-36">
         <div class="container py-8 mx-auto">
             <!-- logo -->
             <div class="flex justify-center items-center gap-6 mb-10">

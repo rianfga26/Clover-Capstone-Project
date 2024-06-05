@@ -61,8 +61,7 @@
                         <tr>
                             <th>No.</th>
                             <th>Dusun</th>
-                            <th>Username</th>
-                            <th>Email</th>
+                            <th>Username/Email</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>

@@ -6,7 +6,7 @@
 
 @section('body')
 <!-- hero section -->
-<div class="container" id="hero-section">
+<div class="bg-dark container" id="hero-section">
     <div class="flex flex-col md:justify-between md:flex-row-reverse items-center">
         <div class="w-full mt-8 px-2 md:px-4 md:mb-10">
             <img src="img/ilustrasi/beranda-ilustrasi.jpg" alt="ilustrasi kesehatan"
@@ -81,7 +81,7 @@
 </div>
 
 <!-- third section -->
-<div class="container mt-14" id="third-section">
+<div class=" container mt-14" id="third-section">
     <div class="w-full !bg-no-repeat !bg-cover !bg-center pb-4" style="background: url({{ asset('/img/beranda-jadwal.png') }})">
         <div class="flex flex-col justify-center items-center px-2 md:px-4">
             <h1 class="font-['Source_Sans_3'] font-semibold text-xl mt-4 md:mt-10 md:text-2xl lg:text-4xl">

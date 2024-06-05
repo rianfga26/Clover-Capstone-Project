@@ -76,7 +76,7 @@ Route::get('/admin/dashboard', [DashboardController::class, 'index'])
 
 Route::group(['prefix' => 'admin'], function(){
     // Utama middleware
-    Route::group(['middleware' => 'utama'], function(){
+    Route::group(['middleware:auth' => 'utama'], function(){
         Route::get('jadwal-kegiatan', JadwalShow::class)->name('admin.jadwal');
         Route::get('kategori/posyandu', PosyanduShow::class)->name('admin.master.posyandu');
         Route::get('kategori/dokumentasi', DokumentasimasterShow::class)->name('admin.master.dokumentasi');
@@ -84,7 +84,7 @@ Route::group(['prefix' => 'admin'], function(){
     });
     
     // Dusun middleware
-    Route::group(['middleware' => 'dusun'], function(){
+    Route::group(['middleware:auth' => 'dusun', 'utama'], function(){
         Route::get('dusun-posyandu', DusunPosyandu::class)->name('admin.dusun-posyandu');
         Route::get('dusun', AdminDusun::class)->name('admin.dusun');
         Route::get('pendaftaran-anggota-posyandu', PendaftaranAnggota::class)->name('admin.pendaftaran');  

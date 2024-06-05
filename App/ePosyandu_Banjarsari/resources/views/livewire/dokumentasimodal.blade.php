@@ -4,7 +4,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="dokumentasiModalLabel">baut dokumentasi</h5>
+                <h5 class="modal-title" id="dokumentasiModalLabel">buat dokumentasi</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                     wire:click="closeModal"></button>
             </div>
@@ -67,9 +67,9 @@
             <form wire:submit.prevent="updateDokumentasi">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label>Nama</label>
-                        <input type="text" wire:model="nama" class="form-control">
-                        @error('nama') <span class="text-danger">{{ $message }}</span> @enderror
+                        <label>Judul</label>
+                        <input type="text" wire:model="judul" class="form-control">
+                        @error('judul') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="mb-3">
                         <label>Deskripsi</label>

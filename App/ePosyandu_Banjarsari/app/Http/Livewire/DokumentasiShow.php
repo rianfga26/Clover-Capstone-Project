@@ -14,7 +14,6 @@ class DokumentasiShow extends Component
  
     protected $paginationTheme = 'bootstrap';
     protected $currentImage; // Add this line
-    public $nama; 
     public $judul, $image, $deskripsi, $kategori, $birthdate, $dokumentasi_id; // Add $image property
     public $search = '';
  

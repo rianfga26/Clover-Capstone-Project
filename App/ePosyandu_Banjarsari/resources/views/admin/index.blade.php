@@ -116,12 +116,12 @@
             <div class="card">
                 <div class="card-body py-4 px-4">
                     <div class="d-flex align-items-center">
-                        <div class="avatar avatar-xl">
-                            <img src="{{ asset('/assets/compiled/jpg/1.jpg') }}" alt="Face 1">
+                        <div class="avatar avatar-xl ">
+                            <img src="{{ asset('/img/admin/admin-icon.png') }}" alt="Face 1">
                         </div>
-                        <div class="ms-3 name">
-                            <h5 class="font-bold">John Duck</h5>
-                            <h6 class="text-muted mb-0">@johnducky</h6>
+                        <div class="ms-3 name text-break">
+                            <h5 class="font-bold text-capitalize">admin {{ $admin->username }}</h5>
+                            <h6 class="text-muted mb-0">{{ $admin->email }}</h6>
                         </div>
                     </div>
                 </div>
