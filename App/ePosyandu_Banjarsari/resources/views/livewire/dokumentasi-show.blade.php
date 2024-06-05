@@ -50,6 +50,7 @@
                         @forelse ($dokumentasis as $dokumentasi)
                             <tr>
                                 <td>{{ $dokumentasi->judul }}</td>
+                                <td>{{ $dokumentasi->deskripsi }}</td>
                                 <td>
                                     @if ($dokumentasi->image)
                                         <img src="{{ asset('storage/' . $dokumentasi->image) }}" alt=""
@@ -58,7 +59,7 @@
                                         No Image
                                     @endif
                                 </td>
-                                <td>{{ $dokumentasi->deskripsi }}</td>
+                                
 
 
                                 <td>{{ $dokumentasi->kategori }}</td>
