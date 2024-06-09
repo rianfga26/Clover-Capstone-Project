@@ -29,7 +29,7 @@
                     <div class="mb-3">
                         <label>Kategori</label>
                         <select wire:model="kategori" class="form-control">
-                            <option value="">Pilih Kategori</option>
+                            <option value="">--Pilih Kategori--</option>
                             @foreach($kategoriOptions as $kategoriOption)
                                 <option value="{{ $kategoriOption }}">{{ $kategoriOption }}</option>
                             @endforeach

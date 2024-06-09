@@ -4,7 +4,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="dokumentasimasterModalLabel">baut dokumentasi</h5>
+                <h5 class="modal-title" id="dokumentasimasterModalLabel">buat dokumentasi</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                     wire:click="closeModal"></button>
             </div>
@@ -26,7 +26,7 @@
                     @error('image') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="mb-3">
-                    <label>Birthdate</label>
+                    <label>tanggal dibuat</label>
                     <input type="date" wire:model="birthdate" class="form-control">
                     @error('birthdate') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
@@ -70,7 +70,7 @@
                     @error('image') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="mb-3">
-                    <label>Birthdate</label>
+                    <label>tanggal dibuat</label>
                     <input type="date" wire:model="birthdate" class="form-control">
                     @error('birthdate') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>

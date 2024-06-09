@@ -4,7 +4,7 @@
 <section id="subMenu" class="bg-cover w-full px-4 h-1/4 py-5 lg:py-7 lg:px-16" style="background: url({{ asset('img/bg-submenu.png') }})">
     <h1 class="font-['Poppins'] text-xl font-semibold md:text-[32px] lg:text-[40px]">Dokumentasi Posyandu</h1>
     <div class="flex gap-1 mt-4">
-        <a href="" class="font-['Source_Sans_3'] text-sm font-medium text-[#00475C] hover:underline md:text-xl lg:text-[18px]">Beranda</a>
+        <a href="/" class="font-['Source_Sans_3'] text-sm font-medium text-[#00475C] hover:underline md:text-xl lg:text-[18px]">Beranda</a>
         <img src="img/icons/chevron-right.svg" alt="" class="w-3 md:w-5 lg:w-3">
         <span class="font-['Source_Sans_3'] text-sm font-medium md:text-xl lg:text-[18px]">Dokumentasi</span>
     </div>

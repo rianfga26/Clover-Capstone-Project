@@ -36,26 +36,30 @@
                 <table class="table table-striped" id="table1">
                     <thead>
                         <tr>
-                           
+                            <th>pembuat</th>
                             <th>judul</th>
                             
                             <th>deskripsi</th>
                             <th>lokasi</th>
                             <th>tanggal dibuat</th>
+                            <th>tanggal akhir</th>
                             
                             <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
-                    @forelse ($jadwals as $jadwal)
+                    @forelse ($schedules as $schedule)
                         <tr>
-                                <td>{{ $jadwal->judul }}</td>
-                                <td>{{ $jadwal->deskripsi }}</td>
-                                <td>{{ $jadwal->lokasi }}</td>
-                                 <td>{{ $jadwal->birthdate }}</td>
+                                <td>{{ $schedule->user->username }}</td>
+                                <td>{{ $schedule->judul }}</td>
+                                <td>{{ $schedule->deskripsi }}</td>
+                                <td>{{ $schedule->lokasi }}</td>
+                                 <td>{{ $schedule->tgl_awal }}</td>
+                                 <td>{{ $schedule->tgl_akhir }}</td>
+                                 
                             <td>
-                                <button type="button" data-bs-toggle="modal" data-bs-target="#updateJadwalModal" wire:click="editJadwal({{$jadwal->id}})" class="btn btn-warning btn-sm ">Ubah</button>
-                                <button type="button" data-bs-toggle="modal" data-bs-target="#deleteJadwalModal" wire:click="deleteJadwal({{$jadwal->id}})" class="btn btn-danger btn-sm">Hapus</button>
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#updateJadwalModal" wire:click="editJadwal({{$schedule->id}})" class="btn btn-warning btn-sm ">Ubah</button>
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#deleteJadwalModal" wire:click="deleteJadwal({{$schedule->id}})" class="btn btn-danger btn-sm">Hapus</button>
                                 
                             </td>
                         </tr>
@@ -67,7 +71,7 @@
                     </tbody>
                 </table>
                 <div>
-                            {{ $jadwals->links() }}
+                            {{ $schedules->links() }}
                         </div>
             </div>
         </div>

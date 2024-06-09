@@ -20,15 +20,6 @@
             </div>
             <form action="" class="py-6 px-4 flex flex-col items-center">
                 <div class="mb-3 w-full">
-                    <label for="namaPosyandu" class="font-['Poppins'] font-normal text-sm text-[#7E7E7E] lg:text-base">Nama Posyandu:</label>
-                    <select name="" id="namaPosyandu" class="w-full mt-2 font-normal font-['Poppins'] text-sm border py-2 px-2 rounded-sm">
-                        @foreach ($posyandu as $items)
-                        <option selected>-Pilih Posyandu-</option>
-                        <option value="{{ $items->id }}">{{ $items->nama }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="mb-3 w-full">
                     <label for="namaDusun" class="font-['Poppins'] font-normal text-sm text-[#7E7E7E] lg:text-base">Nama Dusun:</label>
                     <select name="" id="namaDusun" class="w-full mt-2 font-normal font-['Poppins'] text-sm border py-2 px-2 rounded-sm">
                         @foreach ($dusun as $item)
@@ -37,6 +28,17 @@
                         @endforeach
                     </select>
                 </div>
+
+                <div class="mb-3 w-full">
+                    <label for="namaPosyandu" class="font-['Poppins'] font-normal text-sm text-[#7E7E7E] lg:text-base">Nama Posyandu:</label>
+                    <select name="" id="namaPosyandu" class="w-full mt-2 font-normal font-['Poppins'] text-sm border py-2 px-2 rounded-sm">
+                        @foreach ($posyandu as $items)
+                        <option selected>-Pilih Posyandu-</option>
+                        <option value="{{ $items->id }}">{{ $items->nama }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                
                 <div class="mb-3 w-full">
                     <label for="namaKegiatan" class="font-['Poppins'] font-normal text-sm text-[#7E7E7E] lg:text-base">Nama Kegiatan:</label>
                     <textarea name="" id="namaKegiatan" class="w-full mt-2 border px-1 font-['Poppins'] font-normal text-sm"></textarea>
@@ -47,30 +49,30 @@
         <h3 class="mt-5 font-['Poppins'] font-semibold text-base text-[#7E7E7E] md:hidden">Hasil : </h3>
        
         <div class="w-full md:w-2/3 mt-3 md:mt-0">
-             @forelse ($jadwals as $jadwal)
+             @forelse ($schedules as $schedule)
             <div class="bg-white rounded-lg px-2 py-2 border shadow mt-2 md:mt-0 md:px-6 md:py-4">
             
                 <h5 class="font-['Poppins'] font-semibold text-[#1E5562] text-sm mb-1 md:text-base lg:text-xl">
-                {{ $jadwal->judul }}
+                {{ $schedule->judul }}
                 </h5>
                 <p class="font-medium text-[#ADADAD] text-[10px] font-['Poppins'] md:text-sm md:mt-3">
-                {{ $jadwal->deskripsi }}
+                {{ $schedule->deskripsi }}
                 </p>
                 <div
                     class="flex justify-between items-center mt-2 mb-1 md:mt-4 md:mb-2 md:justify-start md:gap-5">
-                    <a href="{{ route('jadwal_kegiatan.detail', 'posyandu-melati') }}"
+                   <a href="{{ route('jadwal_kegiatan.detail', ['judul' => $schedule->judul]) }}"
                         class="bg-[#018CB5] rounded-full px-2 py-1 text-white text-[8px] font-['Poppins'] md:px-4 md:py-2 md:text-sm">Lihat
                         Detail</a>
                     <div class="flex items-center gap-1">
                         <img src="img/icons/map-pin.svg" alt="" class="w-3 md:w-5" />
                         <p class="font-medium text-[#ADADAD] text-[8px] font-['Poppins'] md:text-[10px] lg:text-sm">
-                        {{ $jadwal->lokasi }}
+                        {{ $schedule->lokasi }}
                         </p>
                     </div>
                     <div class="flex items-center gap-1">
                         <img src="img/icons/clock.svg" alt="" class="w-3 md:w-5" />
                         <p class="font-medium text-[#ADADAD] text-[8px] font-['Poppins'] md:text-[10px] lg:text-sm">
-                        {{ $jadwal->birthdate }}
+                        {{ $schedule->tgl_awal }}
                         </p>
                     </div>
                 </div>
