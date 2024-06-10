@@ -33,14 +33,19 @@ Run command for database table setup
 ```bash
 php artisan migrate
 ```
+Run command for build image storage with your new terminal
+```bash
+php artisan storage:link
+```
 Run command for application server
 ```bash
 php artisan serve
 ```
-Run command for build frontend in your new terminal
+Run command for build frontend with your new terminal
 ```bash
 npm run dev
 ```
+
 
 Thanks for your attention
 
