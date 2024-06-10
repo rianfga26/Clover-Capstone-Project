@@ -13,7 +13,7 @@
                 class="my-3 mx-auto md:w-72 lg:w-96" />
         </div>
         <div class="w-full mt-4 mb-4 px-2 md:px-4 lg:px-16">
-            <h1 class="text-[18px] font-['Poppins'] font-semibold md:text-2xl lg:text-4xl md:mb-6 lg:mb-12">
+            <h1 class="text-[18px] leading-loose font-['Poppins'] font-semibold md:text-2xl lg:text-4xl md:mb-6 lg:mb-5">
                 Selamat Datang Di Website
                 <span class="text-[#018CB5]">Posyandu</span> Desa Banjarsari
             </h1>

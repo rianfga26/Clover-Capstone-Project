@@ -14,6 +14,7 @@
 
     <!-- CSS -->
     @vite('resources/css/app.css')
+    @yield('header_css')
     
     {{-- JS --}}
     @yield('header_js')
@@ -22,7 +23,7 @@
 
 <body>
     <!-- navbar -->
-    <nav class="lg:py-7 pt-2 w-full bg-white z-[999]" x-data="{ top: true, open: false }"
+    <nav class="lg:py-4 pt-2 w-full bg-white z-[999]" x-data="{ top: true, open: false }"
     @scroll.window="top = (window.pageYOffset > 50) ? false : true" x-bind:class="!top ? 'fixed shadow-lg' : ''">
         <div class="container">
         <div class="w-full lg:flex lg:justify-between lg:items-center">

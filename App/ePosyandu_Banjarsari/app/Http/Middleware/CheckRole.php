@@ -17,9 +17,9 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next, ...$roles)
     {
-       if(in_array(Auth::user()->tipe_admin,$roles)){
+        if(in_array(Auth::user()->tipe_admin,$roles)){
             return $next($request);
        }
-       return redirect('/');
+       return abort(403);
     }
 }
