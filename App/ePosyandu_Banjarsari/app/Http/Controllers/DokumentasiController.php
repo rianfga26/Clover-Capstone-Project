@@ -13,11 +13,9 @@ class DokumentasiController extends Controller
         $dokumentasimasters = Dokumentasimaster::all();
         return view('dokumentasi', compact('dokumentasimasters'));
     }
-    public function showDetail($judul)
+    public function showDetailDokumentasi($judul)
     {
-       
-       $dokumentasimaster = Dokumentasimaster::where('nama', $judul)->firstOrFail();
-       $dokumentasi = Dokumentasi::all();
-       return view('detail-dokumentasi', compact('dokumentasi','dokumentasimaster', 'judul'));
+        $dokumentasis = Dokumentasi::where('kategori', $judul)->get();
+        return view('detail-dokumentasi', compact('dokumentasis', 'judul'));
     }
 }

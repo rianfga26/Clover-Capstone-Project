@@ -64,10 +64,7 @@ Route::get('/dokumentasi', function () {
     return view('dokumentasi', ['dokumentasimasters' => $dokumentasimasters]);
 })->name('dokumentasi');
 
-Route::get('/dokumentasi/detail/{judul}', function ($judul = null) {
-    $dokumentasis = Dokumentasi::all();
-    return view('detail-dokumentasi',compact('dokumentasis', 'judul'));
-})->name('dokumentasi.detail');
+Route::get('/dokumentasi/detail/{judul}', [DokumentasiController::class, 'showDetailDokumentasi'])->name('dokumentasi.detail');
 
 Route::get('/kontak', function () {
     return view('kontak');
@@ -78,8 +75,12 @@ Route::get('/kontak', function () {
 Route::get('/login', [AuthController::class, 'login'])->name('login')->middleware('guest');
 Route::post('/login', [AuthController::class, 'authenticated']);
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::get('/forgot-password', [ForgotPasswordController::class, 'mail'])->name('forgot.pw')->middleware('guest');
-Route::post('/forgot-password', [AuthController::class, 'handle_password'])->name('forgot.pw.post');
+Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->name('forgot.pw')->middleware('guest');
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetPasswordEmail'])->name('forgot.pw.post');
+Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'viewResetPassword'])->middleware('guest')->name('password.reset');
+Route::post('/reset-password', [ForgotPasswordController::class, 'handleFormResetPassword'])->middleware('guest')->name('password.update');;
+
+
 // Admin Page
 
 Route::get('/admin/dashboard', [DashboardController::class, 'index'])

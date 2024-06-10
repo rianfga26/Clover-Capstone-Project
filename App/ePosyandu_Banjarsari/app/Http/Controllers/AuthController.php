@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -22,14 +22,20 @@ class AuthController extends Controller
         ]);
 
         $credentials = $request->only('email', 'password');
+        $remember = $request->rememberMe === 'on' ? Str::random(24) : '';
 
-        if (Auth::attempt($credentials)) {
+        if(Auth::viaRemember()){
+            $request->session()->regenerate();
+            return redirect()->route('admin.index');
+        }
+
+        if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
             return redirect()->route('admin.index');
         }
 
         return back()->withErrors([
-            'loginError' => 'Email atau password salah'
+            'loginError' => 'Email atau password salah.'
         ]);
     }
 
@@ -40,17 +46,4 @@ class AuthController extends Controller
         return redirect('/login');
     }
 
-    // forgot password
-    public function handle_password(Request $request){
-        $validated = $request->validate([
-            'email' => 'required|email',
-        ], [
-            'email.required' => 'Email tidak boleh kosong.',
-            'email.email' => 'Masukkan email dengan benar.',
-        ]);
-
-        
-    }
-
-    
 }

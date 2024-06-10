@@ -32,6 +32,16 @@
                 <div class="flex flex-col justify-start mt-20 px-5 md:w-3/4">
                     <h1 class="text-4xl text-[#032D23] font-['Source_Sans_3'] font-bold mb-3 md:text-5xl">Login</h1>
                     <div class="text-[#032D23] font-semibold text-lg font-['Source_Sans_3'] my-3">Masuk dengan akun anda yang sudah didaftarkan.</div>
+                    @if(session('status'))  
+                    <div class="w-full text-green-600 font-['Source_Sans_3'] p-3 bg-green-300 rounded mb-3">
+                        {{ session('status') }}
+                    </div>
+                    @endif
+                    @error('loginError')  
+                    <div class="w-full text-red-600 font-['Source_Sans_3'] p-3 bg-red-300 rounded mb-3">
+                        {{ $message }}
+                    </div>
+                    @enderror
                     <form action="" class="mt-5">
                         <input type="text" class="w-full border-2 mb-4 h-11 px-3 text-base text-[#032D23] border-[#032D23] rounded font-['Poppins'] focus:border-[#018CB5]" placeholder="Email" name="email">
                         @error('email')
@@ -42,7 +52,7 @@
                         <small style="color:red">{{ $message }}</small>
                         @enderror
                         <div class="flex items-center gap-2 mb-3">
-                            <input type="checkbox" class="rounded w-4 border-2 hover:ring-offset-1 hover:ring-1" id="remember">
+                            <input type="checkbox" class="rounded w-4 border-2 hover:ring-offset-1 hover:ring-1" id="remember" name="rememberMe">
                             <label class="font-['Poppins']" for="remember">Remember me</label>
                         </div>
                         <button type="submit" class="w-full text-white font-['Poppins'] font-semibold py-3 rounded bg-[#032D23]">Login</button>
