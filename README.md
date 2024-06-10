@@ -33,7 +33,7 @@ Run command for database table setup
 ```bash
 php artisan migrate
 ```
-Run command for build image storage with your new terminal
+Run command for build image storage
 ```bash
 php artisan storage:link
 ```
