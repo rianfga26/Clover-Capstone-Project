@@ -103,7 +103,7 @@
                 </p>
                 <div
                     class="flex justify-between items-center mt-2 mb-1 md:mt-4 md:mb-2 md:justify-start md:gap-5">
-                    <a href=""
+                    <a href="{{ route('jadwal_kegiatan.detail', ['judul' => $schedule->judul]) }}"
                         class="bg-[#018CB5] rounded-full px-2 py-1 text-white text-[6px] font-['Poppins'] md:text-sm md:px-4 md:py-2">Lihat
                         Detail</a>
                     <div class="flex items-center gap-1">

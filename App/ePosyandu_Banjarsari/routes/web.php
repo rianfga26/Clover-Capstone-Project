@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
-
+use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\DokumentasiController;
 use App\Http\Livewire\PendaftaranAnggota;
 use App\Http\Livewire\DokumentasimasterShow;
 use App\Http\Livewire\DokumentasiShow;
@@ -33,13 +34,13 @@ use App\Models\T_Dusun;
 */
 
 // User Page
-Route::get('/', function () {
-    $schedules = Schedule::all();
-    $dokumentasimasters = Dokumentasimaster::all();
-    return view('beranda', compact('schedules','dokumentasimasters')) ;
-})->name('beranda');
+// Route::get('/', function () {
+//     $schedules = Schedule::all();
+//     $dokumentasimasters = Dokumentasimaster::all();
+//     return view('beranda', compact('schedules','dokumentasimasters')) ;
+// })->name('beranda');
 
-
+Route::get('/', [BerandaController::class, 'index'])->name('beranda');
 // Route::get('/jadwal-kegiatan', function () {
     
    
@@ -47,11 +48,15 @@ Route::get('/', function () {
 // })->name('jadwal_kegiatan');
 
 Route::get('/jadwal-kegiatan', [ScheduleController::class, 'index'])->name('jadwal_kegiatan');
+
 // Route::get('/jadwal-kegiatan/detail/{judul}', function ($judul = null) {
 //     $schedules = Schedule::all();
 //     return view('detail-jadwal-kegiatan', compact('schedules','judul'));
 // })->name('jadwal_kegiatan.detail');
 Route::get('/jadwal-kegiatan/detail/{judul}', [ScheduleController::class, 'showDetail'])->name('jadwal_kegiatan.detail');
+
+// Route::get('/dokumentasi', [DokumentasiController::class, 'index'])->name('dokumentasi');
+// Route::get('/dokumentasi/detail/{judul}', [DokumentasiController::class, 'showDetail'])->name('dokumentasi.detail');
 
 Route::get('/dokumentasi', function () {
     $dokumentasimasters = Dokumentasimaster::all();
