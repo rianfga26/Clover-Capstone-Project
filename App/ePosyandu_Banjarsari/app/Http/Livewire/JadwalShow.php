@@ -3,102 +3,112 @@
 namespace App\Http\Livewire;
 
 use Livewire\WithPagination;
-use App\Models\Jadwal;
+use App\Models\Schedule; // Memastikan model Schedule diimpor dengan benar
 use Livewire\Component;
 
 class JadwalShow extends Component
 {
     use WithPagination;
- 
+
     protected $paginationTheme = 'bootstrap';
- 
-    public $judul, $deskripsi, $lokasi,$birthdate, $jadwal_id;
+
+    public $judul, $deskripsi, $lokasi, $tgl_awal, $tgl_akhir, $schedule_id;
     public $search = '';
- 
+
     protected function rules()
     {
         return [
             'judul' => 'required|string',
-            'deskripsi' => ['required','string'],
+            'deskripsi' => 'required|string',
             'lokasi' => 'required|string',
-            'birthdate' => 'required|date',
+            'tgl_awal' => 'required|date',
+            'tgl_akhir' => 'required|date',
         ];
     }
- 
+
     public function updated($fields)
     {
         $this->validateOnly($fields);
     }
- 
+
     public function saveJadwal()
     {
         $validatedData = $this->validate();
- 
-        Jadwal::create($validatedData);
-        session()->flash('message','Jadwal Added Successfully');
+        $validatedData['user_id'] = auth()->id();
+
+        Schedule::create($validatedData); 
+        session()->flash('message', 'Jadwal Ditambahkan Berhasil');
         $this->resetInput();
         $this->dispatchBrowserEvent('close-modal');
     }
-     
-    public function editJadwal(int $jadwal_id)
+
+    public function editJadwal(int $schedule_id)
     {
-        $jadwal = Jadwal::find($jadwal_id);
-        if($jadwal){
- 
-            $this->jadwal_id = $jadwal->id;
-            $this->judul = $jadwal->judul;
-            $this->deskripsi = $jadwal->deskripsi;
-            $this->lokasi = $jadwal->lokasi;
-            $this->birthdate = $jadwal->birthdate;
-        }else{
-            return redirect()->to('/jadwals');
+        $schedule = Schedule::find($schedule_id);
+        if ($schedule) {
+            $this->schedule_id = $schedule->id;
+            $this->judul = $schedule->judul;
+            $this->deskripsi = $schedule->deskripsi;
+            $this->lokasi = $schedule->lokasi;
+            $this->tgl_awal = $schedule->tgl_awal;
+            $this->tgl_akhir = $schedule->tgl_akhir;
+        } else {
+            return redirect()->to('/schedules');
         }
     }
- 
+
     public function updateJadwal()
     {
         $validatedData = $this->validate();
- 
-        Jadwal::where('id',$this->jadwal_id)->update([
+
+        Schedule::where('id', $this->schedule_id)->update([
             'judul' => $validatedData['judul'],
             'deskripsi' => $validatedData['deskripsi'],
             'lokasi' => $validatedData['lokasi'],
-            'birthdate' => $validatedData['birthdate'],
+            'tgl_awal' => $validatedData['tgl_awal'],
+            'tgl_akhir' => $validatedData['tgl_akhir'],
         ]);
-        session()->flash('message','jadwal Updated Successfully');
+        session()->flash('message', 'Jadwal Diperbarui Berhasil');
         $this->resetInput();
         $this->dispatchBrowserEvent('close-modal');
     }
-     
-    public function deleteJadwal(int $jadwal_id)
+
+    public function deleteJadwal(int $schedule_id)
     {
-        $this->jadwal_id = $jadwal_id;
+        $this->schedule_id = $schedule_id;
     }
- 
+
     public function destroyJadwal()
     {
-        Jadwal::find($this->jadwal_id)->delete();
-        session()->flash('message','Jadwal Deleted Successfully');
+        Schedule::find($this->schedule_id)->delete();
+        session()->flash('message', 'Jadwal Dihapus Berhasil');
         $this->dispatchBrowserEvent('close-modal');
     }
- 
+
     public function closeModal()
     {
         $this->resetInput();
     }
- 
+
     public function resetInput()
     {
         $this->judul = '';
         $this->deskripsi = '';
         $this->lokasi = '';
-        $this->birthdate = '';
+        $this->tgl_awal = '';
+        $this->tgl_akhir = '';
     }
- 
+
     public function render()
-    {
-        $jadwals = Jadwal::where('judul', 'like', '%'.$this->search.'%')->orderBy('id','DESC')->paginate(3);
-        //$jadwals = Jadwal::select('id','name','email','course')->get();
-        return view('livewire.jadwal-show', ['jadwals' => $jadwals])->extends('layouts.master-admin')->section('body');
-    }
+{
+    $schedules = Schedule::with('user') // Eager loading untuk relasi user
+        ->where('judul', 'like', '%' . $this->search . '%')
+        ->orderBy('id', 'DESC')
+        ->paginate(3);
+
+    return view('livewire.jadwal-show', ['schedules' => $schedules])
+        ->extends('layouts.master-admin')
+        ->section('body');
+}
+
 }

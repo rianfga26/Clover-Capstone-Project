@@ -92,30 +92,30 @@
             </p>
 
             <!-- list jadwal -->
-            @forelse ($jadwals as $jadwal)
+            @forelse ($schedules as $schedule)
             <div class="bg-white rounded-lg px-2 py-2 shadow mt-6 md:px-6 md:py-4">
                 
                 <h5 class="font-['Poppins'] font-semibold text-[#1E5562] text-[8px] mb-1 md:text-base">
-                {{ $jadwal->judul }}
+                {{ $schedule->judul }}
                 </h5>
                 <p class="font-medium text-[#ADADAD] text-[8px] font-['Poppins'] md:text-sm">
-                {{ $jadwal->deskripsi }}
+                {{ $schedule->deskripsi }}
                 </p>
                 <div
                     class="flex justify-between items-center mt-2 mb-1 md:mt-4 md:mb-2 md:justify-start md:gap-5">
-                    <a href=""
+                    <a href="{{ route('jadwal_kegiatan.detail', ['judul' => $schedule->judul]) }}"
                         class="bg-[#018CB5] rounded-full px-2 py-1 text-white text-[6px] font-['Poppins'] md:text-sm md:px-4 md:py-2">Lihat
                         Detail</a>
                     <div class="flex items-center gap-1">
                         <img src="img/icons/map-pin.svg" alt="" class="w-3 md:w-5" />
                         <p class="font-medium text-[#ADADAD] text-[8px] font-['Poppins'] md:text-sm">
-                        {{ $jadwal->lokasi }}
+                        {{ $schedule->lokasi }}
                         </p>
                     </div>
                     <div class="flex items-center gap-1">
                         <img src="img/icons/clock.svg" alt="" class="w-3 md:w-5" />
                         <p class="font-medium text-[#ADADAD] text-[8px] font-['Poppins'] md:text-sm">
-                        {{ $jadwal->birthdate }}
+                        {{ $schedule->tgl_awal->format('d F Y') }} - {{ $schedule->tgl_akhir->format('d F Y') }}
                         </p>
                     </div>
                 </div>

@@ -36,9 +36,6 @@
                         </a>
                     @empty
                     @endforelse
-
-
-
                 </div>
             </div>
         </div>

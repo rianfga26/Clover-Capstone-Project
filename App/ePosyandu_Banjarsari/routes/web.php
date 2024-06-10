@@ -8,16 +8,19 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\DashboardController;
-
+use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\DokumentasiController;
 use App\Http\Livewire\PendaftaranAnggota;
 use App\Http\Livewire\DokumentasimasterShow;
 use App\Http\Livewire\DokumentasiShow;
 use App\Http\Livewire\JadwalShow;
 use App\Http\Livewire\PosyanduShow;
+use App\Http\Controllers\ScheduleController;
 
 use App\Models\Dokumentasimaster;
 use App\Models\Dokumentasi;
-use App\Models\Jadwal;
+
+use App\Models\Schedule; 
 use App\Models\T_Posyandu;
 use App\Models\T_Dusun;
 /*
@@ -32,23 +35,29 @@ use App\Models\T_Dusun;
 */
 
 // User Page
-Route::get('/', function () {
-    $jadwals = Jadwal::all();
-    $dokumentasimasters = Dokumentasimaster::all();
-    return view('beranda', compact('jadwals','dokumentasimasters')) ;
-})->name('beranda');
+// Route::get('/', function () {
+//     $schedules = Schedule::all();
+//     $dokumentasimasters = Dokumentasimaster::all();
+//     return view('beranda', compact('schedules','dokumentasimasters')) ;
+// })->name('beranda');
 
+Route::get('/', [BerandaController::class, 'index'])->name('beranda');
+// Route::get('/jadwal-kegiatan', function () {
+    
+   
+//     return view('jadwal-kegiatan', compact('schedules', 'posyandu', 'dusun'));
+// })->name('jadwal_kegiatan');
 
-Route::get('/jadwal-kegiatan', function () {
-    $jadwals = Jadwal::all();
-    $posyandu = T_Posyandu::all();
-    $dusun = T_Dusun::all();
-    return view('jadwal-kegiatan', compact('jadwals', 'posyandu', 'dusun'));
-})->name('jadwal_kegiatan');
+Route::get('/jadwal-kegiatan', [ScheduleController::class, 'index'])->name('jadwal_kegiatan');
 
-Route::get('/jadwal-kegiatan/detail/{judul}', function ($judul = null) {
-    return view('detail-jadwal-kegiatan', compact('judul'));
-})->name('jadwal_kegiatan.detail');
+// Route::get('/jadwal-kegiatan/detail/{judul}', function ($judul = null) {
+//     $schedules = Schedule::all();
+//     return view('detail-jadwal-kegiatan', compact('schedules','judul'));
+// })->name('jadwal_kegiatan.detail');
+Route::get('/jadwal-kegiatan/detail/{judul}', [ScheduleController::class, 'showDetail'])->name('jadwal_kegiatan.detail');
+
+// Route::get('/dokumentasi', [DokumentasiController::class, 'index'])->name('dokumentasi');
+// Route::get('/dokumentasi/detail/{judul}', [DokumentasiController::class, 'showDetail'])->name('dokumentasi.detail');
 
 Route::get('/dokumentasi', function () {
     $dokumentasimasters = Dokumentasimaster::all();

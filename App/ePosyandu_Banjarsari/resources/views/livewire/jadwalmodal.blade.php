@@ -26,9 +26,14 @@
                         @error('lokasi') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="mb-3">
-                    <label>Tanggal dibuat</label>
-                    <input type="date" wire:model="birthdate" class="form-control">
-                    @error('birthdate') <span class="text-danger">{{ $message }}</span> @enderror
+                        <label>Tanggal dibuat</label>
+                        <input type="datetime-local" wire:model="tgl_awal" class="form-control">
+                        @error('tgl_awal') <span class="text-danger">{{ $message }}</span> @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label>Tanggal akhir</label>
+                        <input type="datetime-local" wire:model="tgl_akhir" class="form-control">
+                        @error('tgl_akhir') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -69,9 +74,14 @@
                         @error('lokasi') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="mb-3">
-                    <label>Tanggal dibuat</label>
-                    <input type="date" wire:model="birthdate" class="form-control">
-                    @error('birthdate') <span class="text-danger">{{ $message }}</span> @enderror
+                        <label>Tanggal dibuat</label>
+                        <input type="datetime-local" wire:model="tgl_awal" class="form-control">
+                        @error('tgl_awal') <span class="text-danger">{{ $message }}</span> @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label>Tanggal akhir</label>
+                        <input type="datetime-local" wire:model="tgl_akhir" class="form-control">
+                        @error('tgl_akhir') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
                 <div class="modal-footer">
