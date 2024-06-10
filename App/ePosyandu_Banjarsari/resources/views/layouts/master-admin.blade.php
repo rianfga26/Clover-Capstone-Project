@@ -177,7 +177,7 @@
                         </li>
                         @endif
 
-                        @if (auth()->user()->tipe_admin == "utama" || auth()->user()->tipe_admin == "dusun")
+                        @if (auth()->user()->tipe_admin == "utama")
                         <li class="sidebar-item {{ request()->routeIs('admin.dokumentasi') ? 'active' : '' }} ">
                             <a href="{{ route('admin.dokumentasi') }}" class='sidebar-link'>
                                 <i class="bi bi-image-fill"></i>

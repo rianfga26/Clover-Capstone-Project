@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\DashboardController;
 
 use App\Http\Livewire\PendaftaranAnggota;
@@ -65,28 +66,30 @@ Route::get('/kontak', function () {
 
 
 //login
-Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::get('/login', [AuthController::class, 'login'])->name('login')->middleware('guest');
 Route::post('/login', [AuthController::class, 'authenticated']);
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/forgot-password', [ForgotPasswordController::class, 'mail'])->name('forgot.pw')->middleware('guest');
+Route::post('/forgot-password', [AuthController::class, 'handle_password'])->name('forgot.pw.post');
 // Admin Page
 
 Route::get('/admin/dashboard', [DashboardController::class, 'index'])
     ->name('admin.index')
     ->middleware(['auth', 'checkrole:utama,dusun']);
 
-Route::group(['prefix' => 'admin'], function(){
+Route::prefix('admin')->group(function(){
     // Utama middleware
-    Route::group(['middleware:auth' => 'utama'], function(){
+    Route::middleware(['auth', 'checkrole:utama'])->group(function(){
         Route::get('jadwal-kegiatan', JadwalShow::class)->name('admin.jadwal');
         Route::get('kategori/posyandu', PosyanduShow::class)->name('admin.master.posyandu');
         Route::get('kategori/dokumentasi', DokumentasimasterShow::class)->name('admin.master.dokumentasi');
         Route::get('dokumentasi', DokumentasiShow::class)->name('admin.dokumentasi');
+        Route::get('dusun', AdminDusun::class)->name('admin.dusun');
+        Route::get('dusun-posyandu', DusunPosyandu::class)->name('admin.dusun-posyandu');
     });
     
-    // Dusun middleware
-    Route::group(['middleware:auth' => 'dusun', 'utama'], function(){
-        Route::get('dusun-posyandu', DusunPosyandu::class)->name('admin.dusun-posyandu');
-        Route::get('dusun', AdminDusun::class)->name('admin.dusun');
+    // Dusun & Utama middleware
+    Route::middleware('auth', 'checkrole:utama,dusun')->group(function(){
         Route::get('pendaftaran-anggota-posyandu', PendaftaranAnggota::class)->name('admin.pendaftaran');  
     });
     

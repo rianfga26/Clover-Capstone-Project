@@ -39,4 +39,18 @@ class AuthController extends Controller
 
         return redirect('/login');
     }
+
+    // forgot password
+    public function handle_password(Request $request){
+        $validated = $request->validate([
+            'email' => 'required|email',
+        ], [
+            'email.required' => 'Email tidak boleh kosong.',
+            'email.email' => 'Masukkan email dengan benar.',
+        ]);
+
+        
+    }
+
+    
 }
