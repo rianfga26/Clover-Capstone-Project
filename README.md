@@ -5,7 +5,7 @@ The Banjarsari village posyandu website provides health information including da
 
 Tutorial setup ePosyandu Banjarsari 
 
-Requirement environment : PHP => up to 8.0 version.
+Requirement environment : PHP version => up to 8.0.
 
 
 Install project in your folder
