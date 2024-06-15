@@ -14,7 +14,7 @@ class DokumentasimasterShow extends Component
     protected $paginationTheme = 'bootstrap';
     protected $currentImage; // Add this line
  
-    public $nama, $deskripsi, $image, $birthdate, $dokumentasimaster_id; // Add $image property
+    public $nama, $deskripsi, $image, $dokumentasimaster_id; // Add $image property
     public $search = '';
  
     protected function rules()
@@ -23,7 +23,6 @@ class DokumentasimasterShow extends Component
             'nama' => 'required|string',
             'deskripsi' => ['required','string'],
             'image' => 'nullable|image|max:2048', // Adjust the image validation rules
-            'birthdate' => 'required|date',
             
         ];
     }
@@ -59,7 +58,6 @@ class DokumentasimasterShow extends Component
             $this->nama = $dokumentasimaster->nama;
             $this->deskripsi = $dokumentasimaster->deskripsi;
             $this->currentImage = $dokumentasimaster->image;
-            $this->birthdate = $dokumentasimaster->birthdate;
             
         }else{
             return redirect()->to('/dokumentasimasters');
@@ -71,9 +69,7 @@ class DokumentasimasterShow extends Component
         $validatedData = $this->validate([
             'nama' => 'required|string',
             'deskripsi' => 'required|string',
-            'image' => 'nullable|image|max:1024', // Adjust the image validation rules
-            'birthdate' => 'required|date',
-            
+            'image' => 'nullable|image|max:1024', // Adjust the image validation rules 
         ]);
 
         // Handle image upload
@@ -123,13 +119,11 @@ class DokumentasimasterShow extends Component
         $this->nama = '';
         $this->deskripsi = '';
         $this->image = null; // Reset image property
-        $this->birthdate = '';
     }
  
     public function render()
     {
         $dokumentasimasters = Dokumentasimaster::where('nama', 'like', '%'.$this->search.'%')->orderBy('id','DESC')->paginate(3);
-        //$dokumentasimasters = Student::select('id','name','email','course','birthdate')->get();
         return view('livewire.dokumentasimaster-show', ['dokumentasimasters' => $dokumentasimasters])->extends('layouts.master-admin')->section('body');
     }
 

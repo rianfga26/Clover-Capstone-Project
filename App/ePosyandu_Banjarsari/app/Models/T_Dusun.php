@@ -12,6 +12,10 @@ class T_Dusun extends Model
     protected $table = 't_dusun';
     protected $fillable = ['nama'];
 
+    public function schedule()
+    {
+        return $this->hasMany(Schedule::class);
+    }
     public function t_posyandu()
     {
         return $this->hasMany(T_Posyandu::class);

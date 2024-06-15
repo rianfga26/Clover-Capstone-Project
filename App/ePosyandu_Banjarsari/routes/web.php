@@ -34,30 +34,13 @@ use App\Models\T_Dusun;
 |
 */
 
-// User Page
-// Route::get('/', function () {
-//     $schedules = Schedule::all();
-//     $dokumentasimasters = Dokumentasimaster::all();
-//     return view('beranda', compact('schedules','dokumentasimasters')) ;
-// })->name('beranda');
 
 Route::get('/', [BerandaController::class, 'index'])->name('beranda');
-// Route::get('/jadwal-kegiatan', function () {
-    
-   
-//     return view('jadwal-kegiatan', compact('schedules', 'posyandu', 'dusun'));
-// })->name('jadwal_kegiatan');
-
 Route::get('/jadwal-kegiatan', [ScheduleController::class, 'index'])->name('jadwal_kegiatan');
-
-// Route::get('/jadwal-kegiatan/detail/{judul}', function ($judul = null) {
-//     $schedules = Schedule::all();
-//     return view('detail-jadwal-kegiatan', compact('schedules','judul'));
-// })->name('jadwal_kegiatan.detail');
 Route::get('/jadwal-kegiatan/detail/{judul}', [ScheduleController::class, 'showDetail'])->name('jadwal_kegiatan.detail');
 
-// Route::get('/dokumentasi', [DokumentasiController::class, 'index'])->name('dokumentasi');
-// Route::get('/dokumentasi/detail/{judul}', [DokumentasiController::class, 'showDetail'])->name('dokumentasi.detail');
+Route::post('/jadwal-kegiatan/filter', [ScheduleController::class, 'getJadwal'])->name('filterJadwal');
+
 
 Route::get('/dokumentasi', function () {
     $dokumentasimasters = Dokumentasimaster::all();

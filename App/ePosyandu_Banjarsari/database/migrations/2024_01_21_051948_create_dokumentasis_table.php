@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('deskripsi');
             $table->string('kategori');
-            $table->date('birthdate'); 
             $table->timestamps();
         });
     }

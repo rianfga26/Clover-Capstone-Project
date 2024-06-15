@@ -14,7 +14,7 @@ class DokumentasiShow extends Component
  
     protected $paginationTheme = 'bootstrap';
     protected $currentImage; // Add this line
-    public $judul, $image, $deskripsi, $kategori, $birthdate, $dokumentasi_id; // Add $image property
+    public $judul, $image, $deskripsi, $kategori, $dokumentasi_id; // Add $image property
     public $search = '';
  
     protected function rules()
@@ -24,7 +24,6 @@ class DokumentasiShow extends Component
             'image' => 'nullable|image|max:2048', // Adjust the image validation rules
             'deskripsi' => ['required','string'],
             'kategori' => 'required|string|in:' . implode(',', Dokumentasimaster::pluck('nama')->toArray()),
-            'birthdate' => 'required|date',
             
         ];
     }
@@ -62,7 +61,6 @@ class DokumentasiShow extends Component
             $this->currentImage = $dokumentasi->image;
             $this->deskripsi = $dokumentasi->deskripsi;
             $this->kategori = $dokumentasi->kategori;
-            $this->birthdate = $dokumentasi->birthdate;
             
         }else{
             return redirect()->to('/dokumentasis');
@@ -76,7 +74,6 @@ class DokumentasiShow extends Component
             'deskripsi' => 'required|string',
             'image' => 'nullable|image|max:1024', // Adjust the image validation rules
             'kategori' => 'required|string|in:' . implode(',', Dokumentasimaster::pluck('nama')->toArray()),
-            'birthdate' => 'required|date',
             
         ]);
 
@@ -128,7 +125,6 @@ class DokumentasiShow extends Component
         $this->deskripsi = '';
         $this->image = null; // Reset image property
         $this->kategori = '';
-        $this->birthdate = '';
         
     }
  

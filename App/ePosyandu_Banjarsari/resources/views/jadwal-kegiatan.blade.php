@@ -1,6 +1,15 @@
 @extends('layouts.master-user')
 
+@section('title', 'Jadwal Kegiatan - ePosyandu Banjarsari')
 @section('body')
+
+@if(session('schedules'))
+    <?php $schedules = session('schedules') ?>
+@elseif(session('posyandu'))
+    <?php $posyandu = session('posyandu') ?>
+@elseif(session('dusun'))
+    <?php $dusun = session('dusun') ?>
+@endif
 {{-- sub menu --}}
 <section id="subMenu" class="bg-cover w-full px-4 h-1/4 py-5 lg:py-7 lg:px-16" style="background: url({{ asset('img/bg-submenu.png') }})">
     <h1 class="font-['Poppins'] text-xl font-semibold md:text-[32px] lg:text-[40px]">Daftar Kegiatan Posyandu</h1>
@@ -14,36 +23,39 @@
 {{-- list and form --}}
 <section id="listGallery" class="mt-5 mb-10 md:mt-10 lg:mt-14">
     <div class="flex justify-between flex-wrap px-4 lg:px-16">
-        <div class="w-full border shadow-md md:w-1/4">
+        <div class="w-full relative h-full border shadow-md md:w-1/4">
             <div class="bg-[#018CB5] text-center py-3 rounded-t">
                 <h5 class="text-white font-['Source_Sans_3'] font-semibold text-base lg:text-xl">Filter Kegiatan</h5>
             </div>
-            <form action="" class="py-6 px-4 flex flex-col items-center">
+            <form action="{{ route('filterJadwal') }}" method="post" class="py-6 px-4 flex flex-col items-center">
+                @csrf
                 <div class="mb-3 w-full">
                     <label for="namaDusun" class="font-['Poppins'] font-normal text-sm text-[#7E7E7E] lg:text-base">Nama Dusun:</label>
-                    <select name="" id="namaDusun" class="w-full mt-2 font-normal font-['Poppins'] text-sm border py-2 px-2 rounded-sm">
+                    <select name="dusun" id="namaDusun" class="w-full mt-2 font-normal font-['Poppins'] text-sm border py-2 px-2 rounded-sm">
+                        <option selected value="">-Pilih Dusun-</option>
                         @foreach ($dusun as $item)
-                        <option selected>-Pilih Dusun-</option>
-                        <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                        <option value="{{ $item->id }}" {{ (old("dusun") == $item->id ? "selected":"") }}>{{ $item->nama }}</option>
                         @endforeach
                     </select>
+                    @error('dusun') <span class="text-red-700 text-xs my-2">{{ $message }}</span> @enderror
                 </div>
 
                 <div class="mb-3 w-full">
                     <label for="namaPosyandu" class="font-['Poppins'] font-normal text-sm text-[#7E7E7E] lg:text-base">Nama Posyandu:</label>
-                    <select name="" id="namaPosyandu" class="w-full mt-2 font-normal font-['Poppins'] text-sm border py-2 px-2 rounded-sm">
-                        @foreach ($posyandu as $items)
-                        <option selected>-Pilih Posyandu-</option>
-                        <option value="{{ $items->id }}">{{ $items->nama }}</option>
+                    <select name="posyandu" id="namaPosyandu" class="w-full mt-2 font-normal font-['Poppins'] text-sm border py-2 px-2 rounded-sm">
+                        <option selected value="">-Pilih Posyandu-</option>
+                        @foreach ($posyandu as $item)
+                        <option value="{{ $item->id }}" {{ (old("posyandu") == $item->id ? "selected":"") }}>{{ $item->nama }}</option>
                         @endforeach
                     </select>
+                    @error('posyandu') <span class="text-red-700 text-xs my-2">{{ $message }}</span> @enderror
                 </div>
                 
                 <div class="mb-3 w-full">
                     <label for="namaKegiatan" class="font-['Poppins'] font-normal text-sm text-[#7E7E7E] lg:text-base">Nama Kegiatan:</label>
-                    <textarea name="" id="namaKegiatan" class="w-full mt-2 border px-1 font-['Poppins'] font-normal text-sm"></textarea>
+                    <textarea name="kegiatan" id="namaKegiatan" class="w-full mt-2 border px-1 font-['Poppins'] font-normal text-sm h-24">{{ old('kegiatan') }}</textarea>
                 </div>
-                <button class="px-6 py-2 bg-[#018CB5] font-semibold font-['Poppins'] text-sm text-white rounded-sm">Temukan</button>
+                <button type="submit" class="px-6 py-2 bg-[#018CB5] font-semibold font-['Poppins'] text-sm text-white rounded-sm">Temukan</button>
             </form>
         </div>
         <h3 class="mt-5 font-['Poppins'] font-semibold text-base text-[#7E7E7E] md:hidden">Hasil : </h3>
@@ -72,7 +84,7 @@
                     <div class="flex items-center gap-1">
                         <img src="img/icons/clock.svg" alt="" class="w-3 md:w-5" />
                         <p class="font-medium text-[#ADADAD] text-[8px] font-['Poppins'] md:text-[10px] lg:text-sm">
-                        {{ $schedule->tgl_awal }}
+                        {{ Carbon\Carbon::parse($schedule->tgl_awal)->translatedFormat('l, d F Y'); }} | {{ Carbon\Carbon::parse($schedule->tgl_awal)->translatedFormat('H:i'); }} WIB
                         </p>
                     </div>
                 </div>
@@ -80,6 +92,9 @@
             </div>
             <br>
             @empty
+            <p class="text-center font-['Poppins'] ">
+                {{ session('empty') ? session('empty') : 'Data belum tersedia.'}}
+            </p>
         @endforelse
         </div>
         

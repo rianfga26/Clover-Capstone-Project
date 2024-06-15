@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('nama');
             $table->string('deskripsi');
             $table->string('image')->nullable();
-            $table->date('birthdate'); 
             $table->timestamps();
         });
     }

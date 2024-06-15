@@ -15,6 +15,24 @@
                         <input type="text" wire:model="judul" class="form-control">
                         @error('judul') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="inputGroupSelect01">Pilih Posyandu</label>
+                        <select class="form-select" id="inputGroupSelect01" wire:model="posyanduId" name="posyanduId">
+                            <option selected="">Choose...</option>
+                            @foreach ($posyandu as $item)
+                            <option value="{{$item->id }}">{{$item->nama }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="inputGroupSelect01">Pilih Dusun</label>
+                        <select class="form-select" id="inputGroupSelect01" wire:model="dusunId" name="dusunId">
+                            <option selected="">Choose...</option>
+                            @foreach ($dusun as $item)
+                            <option value="{{$item->id }}">{{$item->nama }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="mb-3">
                         <label>Deskripsi</label>
                         <input type="text" wire:model="deskripsi" class="form-control">
@@ -62,6 +80,22 @@
                         <label>Judul</label>
                         <input type="text" wire:model="judul" class="form-control">
                         @error('judul') <span class="text-danger">{{ $message }}</span> @enderror
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="inputGroupSelect01">Pilih Posyandu</label>
+                        <select class="form-select" id="inputGroupSelect01" wire:model="posyanduId" name="posyanduId">
+                            @foreach ($posyandu as $item)
+                            <option value="{{$item->id }}" selected>{{$item->nama }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="inputGroupSelect01">Pilih Dusun</label>
+                        <select class="form-select" id="inputGroupSelect01" wire:model="dusunId" name="dusunId">
+                            @foreach ($dusun as $item)
+                            <option value="{{$item->id }}" selected>{{$item->nama }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label>Deskripsi</label>

@@ -12,6 +12,11 @@ class T_Posyandu extends Model
     protected $table = 't_posyandu';
     protected $fillable = ['nama','t_dusun_id', 'deskripsi'];
 
+    public function schedule()
+    {
+        return $this->hasMany(Schedule::class);
+    }
+
     public function t_dusun()
     {
         return $this->belongsTo(T_Dusun::class, 't_dusun_id', 'id');

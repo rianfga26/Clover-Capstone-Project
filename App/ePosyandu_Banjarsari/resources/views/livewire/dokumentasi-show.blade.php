@@ -37,6 +37,7 @@
                 <table class="table table-striped" id="table1">
                     <thead>
                         <tr>
+                            <th>No</th>
                             <th>Judul</th>
                             <th>Deskripsi</th>
                             <th>Foto Dokumentasi</th>
@@ -49,6 +50,7 @@
                     <tbody>
                         @forelse ($dokumentasis as $dokumentasi)
                             <tr>
+                                <td>{{ $loop->iteration }}</td>
                                 <td>{{ $dokumentasi->judul }}</td>
                                 <td>{{ $dokumentasi->deskripsi }}</td>
                                 <td>
@@ -63,7 +65,7 @@
 
 
                                 <td>{{ $dokumentasi->kategori }}</td>
-                                <td>{{ $dokumentasi->birthdate }}</td>
+                                <td>{{ date('d/m/Y', strtotime($dokumentasi->created_at)) }}</td>
                                 <td>
                                     <button type="button" data-bs-toggle="modal"
                                         data-bs-target="#updateDokumentasiModal"
@@ -78,7 +80,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5">No Record Found</td>
+                                <td colspan="7" align="center">No Record Found</td>
                             </tr>
                         @endforelse
                     </tbody>

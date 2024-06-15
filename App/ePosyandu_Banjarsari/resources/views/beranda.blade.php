@@ -1,5 +1,6 @@
 @extends('layouts.master-user')
 
+@section('title', 'Beranda - ePosyandu Banjarsari')
 @section('header_js')
 @vite('resources/js/countUp.js')
 @endsection

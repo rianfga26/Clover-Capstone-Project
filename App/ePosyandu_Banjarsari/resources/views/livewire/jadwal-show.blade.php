@@ -38,13 +38,15 @@
                         <tr>
                             <th>pembuat</th>
                             <th>judul</th>
+                            <th>posyandu</th>
+                            <th>dusun</th>
                             
                             <th>deskripsi</th>
                             <th>lokasi</th>
                             <th>tanggal dibuat</th>
                             <th>tanggal akhir</th>
                             
-                            <th>Status</th>
+                            <th>status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,6 +54,8 @@
                         <tr>
                                 <td>{{ $schedule->user->username }}</td>
                                 <td>{{ $schedule->judul }}</td>
+                                <td>{{ $schedule->posyandu->nama }}</td>
+                                <td>{{ $schedule->dusun->nama }}</td>
                                 <td>{{ $schedule->deskripsi }}</td>
                                 <td>{{ $schedule->lokasi }}</td>
                                  <td>{{ $schedule->tgl_awal }}</td>
@@ -65,7 +69,7 @@
                         </tr>
                         @empty
                                     <tr>
-                                        <td colspan="5">No Record Found</td>
+                                        <td colspan="9" align="center">No Record Found</td>
                                     </tr>
                         @endforelse
                     </tbody>
