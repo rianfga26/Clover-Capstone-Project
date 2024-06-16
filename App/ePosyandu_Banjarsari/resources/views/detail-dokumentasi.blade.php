@@ -1,5 +1,6 @@
 @extends('layouts.master-user')
 
+@section('title', Str::slug($judul, ' ').' - ePosyandu Banjarsari')
 @section('header_css')
 <link rel="stylesheet" href="/vendor/ui-5.0.36/dist/fancybox/fancybox.css" />
 @endsection
@@ -32,12 +33,12 @@
 
             <div class="flex flex-wrap justify-center gap-5 px-5 sm:gap-10 md:px-16">
                 @forelse ($dokumentasis as $dokumentasi)
-                    <div class="shadow-2xl rounded-md px-3 py-3 w-full sm:w-2/5 lg:w-[300px] border">
-                        <div class="border border-1 rounded p-5">
+                    <div class="shadow-2xl rounded-md px-3 py-3 w-full sm:w-2/5 lg:w-[350px] border">
+                        <div class="rounded p-5">
                             @if ($dokumentasi->image)
                                 <a href="{{ asset('storage/' . $dokumentasi->image) }}" data-fancybox="gallery" data-caption="{{ $dokumentasi->deskripsi }}">
                                     <img src="{{ asset('storage/' . $dokumentasi->image) }}" alt=""
-                                        class="rounded mt-2 w-full h-40 object-cover">
+                                        class="rounded mt-2 w-full h-48 object-cover">
                                 </a>
                                 
                             @else

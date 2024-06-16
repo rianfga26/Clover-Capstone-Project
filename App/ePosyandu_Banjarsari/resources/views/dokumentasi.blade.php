@@ -1,5 +1,6 @@
 @extends('layouts.master-user')
 
+@section('title', 'Dokumentasi - ePosyandu Banjarsari')
 @section('body')
     <section id="subMenu" class="bg-cover w-full px-4 h-1/4 py-5 lg:py-7 lg:px-16"
         style="background: url({{ asset('img/bg-submenu.png') }})">

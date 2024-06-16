@@ -17,10 +17,20 @@ class Schedule extends Model
         'lokasi',
         'deskripsi',
         'user_id',
+        't_posyandu_id',
+        't_dusun_id',
     ];
     public function user()
     {
         return $this->belongsTo(User::class); // Menetapkan relasi belongsTo
+    }
+    public function dusun()
+    {
+        return $this->belongsTo(T_Dusun::class, 't_dusun_id'); // Menetapkan relasi belongsTo
+    }
+    public function posyandu()
+    {
+        return $this->belongsTo(T_Posyandu::class, 't_posyandu_id'); // Menetapkan relasi belongsTo
     }
     public function getTglAwalAttribute($value)
     {

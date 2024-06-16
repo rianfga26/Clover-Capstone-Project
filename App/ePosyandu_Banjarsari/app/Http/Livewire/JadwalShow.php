@@ -4,6 +4,8 @@ namespace App\Http\Livewire;
 
 use Livewire\WithPagination;
 use App\Models\Schedule; // Memastikan model Schedule diimpor dengan benar
+use App\Models\T_Posyandu; 
+use App\Models\T_Dusun; 
 use Livewire\Component;
 
 class JadwalShow extends Component
@@ -12,13 +14,15 @@ class JadwalShow extends Component
 
     protected $paginationTheme = 'bootstrap';
 
-    public $judul, $deskripsi, $lokasi, $tgl_awal, $tgl_akhir, $schedule_id;
+    public $judul, $posyanduId, $dusunId, $deskripsi, $lokasi, $tgl_awal, $tgl_akhir, $schedule_id;
     public $search = '';
 
     protected function rules()
     {
         return [
             'judul' => 'required|string',
+            'posyanduId' => 'required|integer',
+            'dusunId' => 'required|integer',
             'deskripsi' => 'required|string',
             'lokasi' => 'required|string',
             'tgl_awal' => 'required|date',
@@ -34,7 +38,11 @@ class JadwalShow extends Component
     public function saveJadwal()
     {
         $validatedData = $this->validate();
+        $validatedData['t_posyandu_id'] = (int) $validatedData['posyanduId'];
+        $validatedData['t_dusun_id'] = (int) $validatedData['dusunId'];
         $validatedData['user_id'] = auth()->id();
+
+        // dd($validatedData);
 
         Schedule::create($validatedData); 
         session()->flash('message', 'Jadwal Berhasil Ditambahkan');
@@ -93,6 +101,8 @@ class JadwalShow extends Component
     public function resetInput()
     {
         $this->judul = '';
+        $this->dusunId = '';
+        $this->posyanduId = '';
         $this->deskripsi = '';
         $this->lokasi = '';
         $this->tgl_awal = '';
@@ -101,12 +111,14 @@ class JadwalShow extends Component
 
     public function render()
 {
-    $schedules = Schedule::with('user') // Eager loading untuk relasi user
+    $schedules = Schedule::with('user', 'posyandu', 'dusun') // Eager loading untuk relasi user
         ->where('judul', 'like', '%' . $this->search . '%')
         ->orderBy('id', 'DESC')
         ->paginate(3);
+    $posyandu = T_Posyandu::all();
+    $dusun = T_Dusun::all();
 
-    return view('livewire.jadwal-show', ['schedules' => $schedules])
+    return view('livewire.jadwal-show', compact('schedules', 'posyandu', 'dusun'))
         ->extends('layouts.master-admin')
         ->section('body');
 }

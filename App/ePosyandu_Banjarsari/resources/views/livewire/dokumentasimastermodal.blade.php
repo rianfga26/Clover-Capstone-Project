@@ -25,11 +25,6 @@
                     <input type="file" wire:model="image" class="form-control">
                     @error('image') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
-                    <div class="mb-3">
-                    <label>tanggal dibuat</label>
-                    <input type="date" wire:model="birthdate" class="form-control">
-                    @error('birthdate') <span class="text-danger">{{ $message }}</span> @enderror
-                    </div>
                     
                 </div>
                 <div class="modal-footer">
@@ -68,11 +63,6 @@
                     <label>Foto Dokumentasi</label>
                     <input type="file" wire:model="image" class="form-control">
                     @error('image') <span class="text-danger">{{ $message }}</span> @enderror
-                    </div>
-                    <div class="mb-3">
-                    <label>tanggal dibuat</label>
-                    <input type="date" wire:model="birthdate" class="form-control">
-                    @error('birthdate') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
                 <div class="modal-footer">

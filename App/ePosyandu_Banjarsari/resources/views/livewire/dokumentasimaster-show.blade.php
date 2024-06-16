@@ -37,6 +37,7 @@
                     <thead>
                         <tr>
                            
+                            <th>No</th>
                             <th>Nama</th>
                             
                             <th>Deskripsi</th>
@@ -49,6 +50,7 @@
                     <tbody>
                     @forelse ($dokumentasimasters as $dokumentasimaster)
                         <tr>
+                                <td>{{ $loop->iteration }}</td>
                                 <td>{{ $dokumentasimaster->nama }}</td>
                                 <td>{{ $dokumentasimaster->deskripsi }}</td>
                                 <td>
@@ -59,7 +61,7 @@
                                             No Image
                                         @endif
                                 </td>
-                                 <td>{{ $dokumentasimaster->birthdate }}</td>
+                                 <td>{{ date('d/m/Y', strtotime($dokumentasimaster->created_at)) }}</td>
                             <td>
                                 <button type="button" data-bs-toggle="modal" data-bs-target="#updateDokumentasimasterModal" wire:click="editDokumentasimaster({{$dokumentasimaster->id}})" class="btn btn-warning btn-sm ">Ubah</button>
                                 <button type="button" data-bs-toggle="modal" data-bs-target="#deleteDokumentasimasterModal" wire:click="deleteDokumentasimaster({{$dokumentasimaster->id}})" class="btn btn-danger btn-sm">Hapus</button>
@@ -68,7 +70,7 @@
                         </tr>
                         @empty
                                     <tr>
-                                        <td colspan="5">No Record Found</td>
+                                        <td colspan="6">No Record Found</td>
                                     </tr>
                         @endforelse
                     </tbody>

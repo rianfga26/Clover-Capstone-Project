@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@yield('title')</title>
+    
 
+    <link rel="icon" type="image/png" sizes="128x128 href="{{ asset('img/logo.png') }}">
     <!-- Fonts CDN-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -82,7 +85,7 @@
     </main>
 
     <!-- footer -->
-    <footer class="w-full bg-[#2F2F2F] lg:mt-36">
+    <footer class="w-full bg-[#2F2F2F]">
         <div class="container py-8 mx-auto">
             <!-- logo -->
             <div class="flex justify-center items-center gap-6 mb-10">
