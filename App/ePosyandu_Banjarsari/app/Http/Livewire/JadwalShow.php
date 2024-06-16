@@ -37,7 +37,7 @@ class JadwalShow extends Component
         $validatedData['user_id'] = auth()->id();
 
         Schedule::create($validatedData); 
-        session()->flash('message', 'Jadwal Ditambahkan Berhasil');
+        session()->flash('message', 'Jadwal Berhasil Ditambahkan');
         $this->resetInput();
         $this->dispatchBrowserEvent('close-modal');
     }
@@ -68,7 +68,7 @@ class JadwalShow extends Component
             'tgl_awal' => $validatedData['tgl_awal'],
             'tgl_akhir' => $validatedData['tgl_akhir'],
         ]);
-        session()->flash('message', 'Jadwal Diperbarui Berhasil');
+        session()->flash('message', 'Jadwal Berhasil Diperbarui');
         $this->resetInput();
         $this->dispatchBrowserEvent('close-modal');
     }
@@ -81,7 +81,7 @@ class JadwalShow extends Component
     public function destroyJadwal()
     {
         Schedule::find($this->schedule_id)->delete();
-        session()->flash('message', 'Jadwal Dihapus Berhasil');
+        session()->flash('message', 'Jadwal Berhasil Dihapus ');
         $this->dispatchBrowserEvent('close-modal');
     }
 

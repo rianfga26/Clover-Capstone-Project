@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="mb-3">
-                    <label>Birthdate</label>
+                    <label>Tanggal Dibuat</label>
                     <input type="date" wire:model="birthdate" class="form-control">
                     @error('birthdate') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
