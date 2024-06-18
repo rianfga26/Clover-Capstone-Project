@@ -43,11 +43,11 @@
                     </div>
                     @enderror
                     <form action="" class="mt-5">
-                        <input type="text" class="w-full border-2 mb-4 h-11 px-3 text-base text-[#032D23] border-[#032D23] rounded font-['Poppins'] focus:border-[#018CB5]" placeholder="Email" name="email">
+                        <input type="text" class="w-full border-2 mb-1 h-11 px-3 text-base text-[#032D23] border-[#032D23] rounded font-['Poppins'] focus:border-[#018CB5]" placeholder="Email" name="email">
                         @error('email')
-                        <small style="color:red">{{ $message }}</small>
+                        <small style="color:red" class="mb-1">{{ $message }}</small>
                         @enderror
-                        <input type="password" class="w-full border-2 mb-4 h-11 px-3 text-base text-[#16201e] border-[#032D23] rounded font-['Poppins']" placeholder="Password" name="password">
+                        <input type="password" class="w-full border-2 mt-2 mb-1 h-11 px-3 text-base text-[#16201e] border-[#032D23] rounded font-['Poppins']" placeholder="Password" name="password">
                         @error('password')
                         <small style="color:red">{{ $message }}</small>
                         @enderror

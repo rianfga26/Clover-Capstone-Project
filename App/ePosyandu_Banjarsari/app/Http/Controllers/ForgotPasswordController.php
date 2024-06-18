@@ -27,15 +27,13 @@ class ForgotPasswordController extends Controller
             'email.email' => 'Masukkan email dengan benar.',
         ]);
 
-        $title = 'Welcome to the laracoding.com example email';
-        $body = 'Thank you for participating!';
 
         $status = Password::sendResetLink(
             $request->only('email')
         );
 
         return $status === Password::RESET_LINK_SENT
-                ? back()->with(['status' => __($status)])
+                ? back()->with(['status' => 'Email sudah terkirim silahkan cek email anda.'])
                 : back()->withErrors(['mail' => __($status)]);
                 
     }
@@ -63,7 +61,7 @@ class ForgotPasswordController extends Controller
         );
         
         return $status === Password::PASSWORD_RESET
-                    ? redirect()->route('login')->with('status', __($status))
+                    ? redirect()->route('login')->with('status', 'Password telah diganti. Silahkan masuk!')
                     : back()->withErrors(['email' => [__($status)]]);
     }
 
