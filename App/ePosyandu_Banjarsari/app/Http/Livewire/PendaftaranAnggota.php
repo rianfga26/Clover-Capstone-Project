@@ -124,9 +124,9 @@ class PendaftaranAnggota extends Component
         $this->emit('hapusModal', ['message' => 'Anggota berhasil di hapus!!!']);
     }
 
-    public function export(){
-        return Excel::download(new PosyanduExport, 'anggota_'.date('d-M-Y').'.xlsx');
-    }
+    // public function export(){
+    //     return Excel::download(new PosyanduExport, 'anggota_'.date('d-M-Y').'.xlsx');
+    // }
 
     public function render()
     {

@@ -87,7 +87,7 @@ class PosyanduShow extends Component
         $this->nama = '';
         $this->deskripsi = '';
     }
- 
+    
     public function render()
     {
         $posyandus = Posyandu::where('nama', 'like', '%'.$this->search.'%')->orderBy('id','DESC')->paginate(3);

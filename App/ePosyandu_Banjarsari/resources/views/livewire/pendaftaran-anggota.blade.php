@@ -49,7 +49,8 @@
             <div class="card-body table-responsive">
                 <button type="button" class="btn btn-secondary btn-md" data-bs-toggle="modal"
                 data-bs-target="#tambahModal" wire:click.prevent="clearForm">Tambah data</button>
-                <button type="button" class="btn btn-success btn-md ms-2" wire:click.prevent="export">Cetak Excel</button>
+                <!-- <button type="button" class="btn btn-success btn-md ms-2" wire:click.prevent="export">Cetak Excel</button> -->
+                <a href="pendaftaran-anggota-posyandu/export" class="btn btn-success btn-md ms-2">Cetak Excel</a>
                 <table class="table table-striped mt-3" id="table">
                     <thead>
                         <tr>

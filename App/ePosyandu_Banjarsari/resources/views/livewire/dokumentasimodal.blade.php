@@ -37,11 +37,7 @@
                         @error('kategori') <span class="error">{{ $message }}</span> @enderror
                     </div>
 
-                    <div class="mb-3">
-                    <label>Birthdate</label>
-                    <input type="date" wire:model="birthdate" class="form-control">
-                    @error('birthdate') <span class="text-danger">{{ $message }}</span> @enderror
-                    </div>
+                    
                     
                 </div>
                 <div class="modal-footer">
