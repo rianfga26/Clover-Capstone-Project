@@ -3,7 +3,7 @@
 @section('body')
 
 <div class="page-heading">
-    <h3>Profile Statistics</h3>
+    <h3>Dashboard</h3>
 </div>
 <div class="page-content">
     <section class="row">
@@ -19,7 +19,7 @@
                                         width="50" height="50"></iconify-icon>
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="font-extrabold my-2">3</h6>
+                                    <h6 class="font-extrabold my-2">{{ $total_posyandu }}</h6>
                                     <h6 class="text-muted font-semibold ">Total Posyandu</h6>
 
                                 </div>
@@ -39,7 +39,7 @@
 
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="font-extrabold my-2">78</h6>
+                                    <h6 class="font-extrabold my-2">{{ $total_balita }}</h6>
                                     <h6 class="text-muted font-semibold">Total Balita</h6>
 
                                 </div>
@@ -58,7 +58,7 @@
                                         height="44"></iconify-icon>
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="font-extrabold my-2">47</h6>
+                                    <h6 class="font-extrabold my-2">{{ $total_ibu_hamil }}</h6>
                                     <h6 class="text-muted font-semibold">Total Ibu Hamil</h6>
 
                                 </div>
@@ -76,7 +76,7 @@
                                         width="50" height="50"></iconify-icon>
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="font-extrabold my-2">112</h6>
+                                    <h6 class="font-extrabold my-2">{{ $total_posbindu }}</h6>
                                     <h6 class="text-muted font-semibold">Total Posbindu lansia</h6>
 
                                 </div>

@@ -2,9 +2,33 @@
 
 @section('title', 'Beranda - ePosyandu Banjarsari')
 @section('header_js')
-@vite('resources/js/countUp.js')
+<script src="https://inorganik.github.io/countUp.js/dist/countUp.umd.js"></script>
+<!-- Include CountUp.js from CDN -->
 @endsection
+@section('footer_js')
+<script>
+        var count;
+    
+        const options = {
+            enableScrollSpy: true,
+            duration: 3.5,
+        };
+    
+        window.onload = function() {
+            count = new countUp.CountUp("counter1", {{ $total_posyandu }}, options);
+            count = new countUp.CountUp("counter2", {{ $total_balita }}, options);
+            count = new countUp.CountUp("counter3", {{ $total_ibu_hamil }}, options);
+            count = new countUp.CountUp("counter4", {{ $total_posbindu }}, options);
 
+            if (!countUp.error) {
+                countUp.start();
+            } else {
+                console.error(countUp.error);
+            }
+        };
+    
+</script>
+@endsection
 @section('body')
 <!-- hero section -->
 <div class="bg-dark container" id="hero-section">
@@ -44,7 +68,7 @@
         <div class="w-1/2 flex flex-col justify-center items-center gap-5 lg:gap-10 mb-6 lg:w-1/4">
             <img src="img/icons/posyandu.svg" alt="" class="md:w-12 lg:w-14" />
             <p class="text-3xl font-semibold font-['Poppins'] lg:text-4xl" id="counter1">
-                5
+                {{ $total_posyandu }}
             </p>
             <p class="text-base font-semibold font-['Source_Sans_3'] text-[#ADADAD] md:text-xl">
                 Total Posyandu
@@ -53,7 +77,7 @@
         <div class="w-1/2 flex flex-col justify-center items-center gap-5 lg:gap-10 mb-6 lg:w-1/4">
             <img src="img/icons/balita.svg" alt="" class="md:w-12 lg:w-14" />
             <p class="text-3xl font-semibold font-['Poppins'] lg:text-4xl text-[#018CB5]" id="counter2">
-                200
+                {{ $total_balita }}
             </p>
             <p class="text-base font-semibold font-['Source_Sans_3'] text-[#ADADAD] md:text-xl">
                 Total Balita
@@ -62,7 +86,7 @@
         <div class="w-1/2 flex flex-col justify-center items-center gap-5 lg:gap-10 mb-6 lg:w-1/4">
             <img src="img/icons/ibu-hamil.svg" alt="" class="md:w-6 lg:w-7" />
             <p class="text-3xl font-semibold font-['Poppins'] lg:text-4xl" id="counter3">
-                40
+                {{ $total_ibu_hamil }}
             </p>
             <p class="text-base font-semibold font-['Source_Sans_3'] text-[#ADADAD] md:text-xl">
                 Total Ibu Hamil
@@ -71,7 +95,7 @@
         <div class="w-1/2 flex flex-col justify-center items-center gap-5 lg:gap-10 mb-6 lg:w-1/4">
             <img src="img/icons/lansia.svg" alt="" class="md:w-12 lg:w-14" />
             <p class="text-3xl font-semibold font-['Poppins'] lg:text-4xl text-[#018CB5]" id="counter4">
-                89
+                {{ $total_posbindu }}
             </p>
             <p
                 class="text-base font-semibold font-['Source_Sans_3'] text-[#ADADAD] md:text-xl text-wrap w-3/4 text-center">

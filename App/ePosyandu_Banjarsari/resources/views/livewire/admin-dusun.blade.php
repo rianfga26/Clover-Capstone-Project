@@ -71,12 +71,12 @@
                             <tr>
                                 <td>{{ $users->firstItem() + $loop->index }}</td>
                                 @if($user->dusun->isEmpty())
-                                    <td>No Record Data</td>
+                                    <td>Kosong</td>
                                 @else
                                     <td>{{ $user->dusun[0]->nama }}</td>
                                 @endif
                                 <td>{{ $user->username }}</td>
-                                <td>{{ $user->email }}/</td>
+                                <td>{{ $user->email }}</td>
                                 <td>
                                     <button type="button" class="btn btn-warning btn-sm"
                                         wire:click.prevent="detailAdminDusun({{ $user->id }})"

@@ -39,15 +39,15 @@
                     <form action="{{ route('password.update') }}" method="post" class="mt-5">
                         @csrf
                         <input type="hidden" name="token" value="{{ $token }}">
-                        <input type="email" class="w-full border-2 mb-4 h-11 px-3 text-base text-[#16201e] border-[#032D23] rounded font-['Poppins']" placeholder="Masukkan email yang terdaftar" name="email">
+                        <input type="email" class="w-full border-2 mb-1 h-11 px-3 text-base text-[#16201e] border-[#032D23] rounded font-['Poppins']" placeholder="Masukkan email yang terdaftar" name="email" value="{{ old('email') }}">
+                        @error('email')
+                        <small style="color:red">{{ $message }}</small>
+                        @enderror
+                        <input type="password" class="w-full border-2 mb-1 mt-2 h-11 px-3 text-base text-[#16201e] border-[#032D23] rounded font-['Poppins']" placeholder="Masukkan Password Baru" name="password">
                         @error('password')
                         <small style="color:red">{{ $message }}</small>
                         @enderror
-                        <input type="password" class="w-full border-2 mb-4 h-11 px-3 text-base text-[#16201e] border-[#032D23] rounded font-['Poppins']" placeholder="Masukkan Password Baru" name="password">
-                        @error('password')
-                        <small style="color:red">{{ $message }}</small>
-                        @enderror
-                        <input type="password" class="w-full border-2 mb-4 h-11 px-3 text-base text-[#16201e] border-[#032D23] rounded font-['Poppins']" placeholder="Konfirmasi Password" name="password_confirmation">
+                        <input type="password" class="w-full border-2 mb-4 mt-2 h-11 px-3 text-base text-[#16201e] border-[#032D23] rounded font-['Poppins']" placeholder="Konfirmasi Password" name="password_confirmation">
 
                         <button type="submit" class="w-full text-white font-['Poppins'] font-semibold py-3 rounded bg-[#032D23]">Kirim</button>
                     </form>
