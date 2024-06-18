@@ -58,9 +58,8 @@
                                 <td>{{ $schedule->dusun->nama }}</td>
                                 <td>{{ $schedule->deskripsi }}</td>
                                 <td>{{ $schedule->lokasi }}</td>
-                                 <td>{{ $schedule->tgl_awal }}</td>
-                                 <td>{{ $schedule->tgl_akhir }}</td>
-                                 
+                                <td>{{ $schedule->tgl_awal }}</td>
+                                <td>{{ $schedule->tgl_akhir }}</td>
                             <td>
                                 <button type="button" data-bs-toggle="modal" data-bs-target="#updateJadwalModal" wire:click="editJadwal({{$schedule->id}})" class="btn btn-warning btn-sm ">Ubah</button>
                                 <button type="button" data-bs-toggle="modal" data-bs-target="#deleteJadwalModal" wire:click="deleteJadwal({{$schedule->id}})" class="btn btn-danger btn-sm">Hapus</button>

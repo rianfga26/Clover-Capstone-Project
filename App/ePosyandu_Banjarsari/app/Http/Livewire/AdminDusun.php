@@ -59,7 +59,6 @@ class AdminDusun extends Component
         $this->dusun= $user->t_dusun_id;
         $this->username= $user->username;
         $this->email= $user->email;
-        $this->password= $user->password;
         $this->password_confirmation= $user->password_confirmation;
     }
 

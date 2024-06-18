@@ -84,17 +84,17 @@
                     <div class="input-group mb-3">
                         <label class="input-group-text" for="inputGroupSelect01">Pilih Posyandu</label>
                         <select class="form-select" id="inputGroupSelect01" wire:model="posyanduId" name="posyanduId">
-                            @foreach ($posyandu as $item)
-                            <option value="{{$item->id }}" selected>{{$item->nama }}</option>
-                            @endforeach
+                        @foreach ($posyandu as $item)        
+                            <option value="{{ $item->id }}" {{ ($posyanduId == $item->id ? "selected":"") }} >{{ $item->nama }}</option>
+                        @endforeach
                         </select>
                     </div>
                     <div class="input-group mb-3">
                         <label class="input-group-text" for="inputGroupSelect01">Pilih Dusun</label>
                         <select class="form-select" id="inputGroupSelect01" wire:model="dusunId" name="dusunId">
-                            @foreach ($dusun as $item)
-                            <option value="{{$item->id }}" selected>{{$item->nama }}</option>
-                            @endforeach
+                        @foreach ($dusun as $item)        
+                            <option value="{{ $item->id }}" {{ ($dusunId == $item->id ? "selected":"") }} >{{ $item->nama }}</option>
+                        @endforeach
                         </select>
                     </div>
                     <div class="mb-3">

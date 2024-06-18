@@ -9,6 +9,8 @@ use App\Models\T_Posyandu;
 use Livewire\WithPagination;
 use App\Models\KategoriPosyandu;
 use Illuminate\Support\Facades\Auth;
+use App\Exports\PosyanduExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PendaftaranAnggota extends Component
 {
@@ -120,6 +122,10 @@ class PendaftaranAnggota extends Component
         Posyandu::where('nik', $this->nik)->delete();
         $this->clearForm();
         $this->emit('hapusModal', ['message' => 'Anggota berhasil di hapus!!!']);
+    }
+
+    public function export(){
+        return Excel::download(new PosyanduExport, 'anggota_'.date('d-M-Y').'.xlsx');
     }
 
     public function render()

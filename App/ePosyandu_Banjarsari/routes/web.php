@@ -84,29 +84,10 @@ Route::prefix('admin')->group(function(){
     // Dusun & Utama middleware
     Route::middleware('auth', 'checkrole:utama,dusun')->group(function(){
         Route::get('pendaftaran-anggota-posyandu', PendaftaranAnggota::class)->name('admin.pendaftaran');  
+        Route::get('pendaftaran-anggota-posyandu/export', PendaftaranAnggota::class)->name('admin.pendaftaran.export');  
     });
-    
-    // Route::get('/admin/dashboard', function () {
-    //     return view('admin.index');
-    // })->name('admin.index');    
-    
+
 });
 
-// Route::get('/admin/jadwal-kegiatan', function () {
-//     return view('admin.jadwal-kegiatan');
-// })->name('admin.jadwal');
-
-// Route::get('/admin/dokumentasi', function () {
-//     return view('admin.dokumentasi');
-// })->name('admin.dokumentasi');      
-
-// Admin Master - Page
-// Route::get('/admin/kategori/posyandu', function () {
-//     return view('admin.master.posyandu');
-// })->name('admin.master.posyandu');
-
-// Route::get('/admin/kategori/dokumentasi', function () {
-//     return view('admin.master.dokumentasi');
-// })->name('admin.master.dokumentasi');
 
 // Auth::routes();
