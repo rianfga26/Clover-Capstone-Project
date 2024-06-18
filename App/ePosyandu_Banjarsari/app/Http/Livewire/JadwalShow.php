@@ -55,6 +55,8 @@ class JadwalShow extends Component
         $schedule = Schedule::find($schedule_id);
         if ($schedule) {
             $this->schedule_id = $schedule->id;
+            $this->posyanduId = $schedule->t_posyandu_id;
+            $this->dusunId = $schedule->t_dusun_id;
             $this->judul = $schedule->judul;
             $this->deskripsi = $schedule->deskripsi;
             $this->lokasi = $schedule->lokasi;
@@ -71,6 +73,8 @@ class JadwalShow extends Component
 
         Schedule::where('id', $this->schedule_id)->update([
             'judul' => $validatedData['judul'],
+            't_posyandu_id' => $validateData['posyanduId'],
+            't_dusun_id' => $validateData['dusunId'],
             'deskripsi' => $validatedData['deskripsi'],
             'lokasi' => $validatedData['lokasi'],
             'tgl_awal' => $validatedData['tgl_awal'],

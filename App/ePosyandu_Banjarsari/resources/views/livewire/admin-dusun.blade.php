@@ -61,8 +61,8 @@
                         <tr>
                             <th>No.</th>
                             <th>Dusun</th>
-                            <th>Username/Email</th>
-                            <th>Status</th>
+                            <th>Username</th>
+                            <th>Email</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -70,12 +70,13 @@
                         @foreach ($users as $item => $user)
                             <tr>
                                 <td>{{ $users->firstItem() + $loop->index }}</td>
-                                @foreach ($user->dusun()->get() as $dusun)
-                                    <td>{{ $dusun->nama }}</td>
-                                @endforeach
+                                @if($user->dusun->isEmpty())
+                                    <td>No Record Data</td>
+                                @else
+                                    <td>{{ $user->dusun[0]->nama }}</td>
+                                @endif
                                 <td>{{ $user->username }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td>{{ $user->tipe_admin }}</td>
+                                <td>{{ $user->email }}/</td>
                                 <td>
                                     <button type="button" class="btn btn-warning btn-sm"
                                         wire:click.prevent="detailAdminDusun({{ $user->id }})"
@@ -182,11 +183,11 @@
                         <div class="modal-body">
                             <div class="input-group mb-3">
                                 <label class="input-group-text" for="inputGroupSelect01">Pilih Dusun</label>
-                                <select class="form-select" id="inputGroupSelect01">
+                                <select class="form-select" id="inputGroupSelect01" wire:model="dusun">
                                     <option selected="">Choose...</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    @foreach ($dusuns as $item)        
+                                        <option value="{{ $item->id }}" {{ ($dusun == $item->id ? "selected":"") }} >{{ $item->nama }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="mb-3">
@@ -214,6 +215,7 @@
                                 <div class="form-group">
                                     <input id="editPassword" type="password" placeholder="Password"
                                         class="form-control" wire:model="password" name="password">
+                                    <small>Note: Password tak perlu diisi jika tidak ingin diganti.</small>
                                     @error('password')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror

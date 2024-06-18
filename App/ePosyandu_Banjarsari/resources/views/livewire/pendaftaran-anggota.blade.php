@@ -49,7 +49,7 @@
             <div class="card-body table-responsive">
                 <button type="button" class="btn btn-secondary btn-md" data-bs-toggle="modal"
                 data-bs-target="#tambahModal" wire:click.prevent="clearForm">Tambah data</button>
-                <button type="button" class="btn btn-secondary btn-md">Cetak</button>
+                <button type="button" class="btn btn-success btn-md ms-2" wire:click.prevent="export">Cetak Excel</button>
                 <table class="table table-striped mt-3" id="table">
                     <thead>
                         <tr>
@@ -244,7 +244,7 @@
                                 <select class="form-select" id="inputGroupSelect01" wire:model="posyanduId" name="posyanduId">
                                     <option selected="">Choose...</option>
                                     @foreach ($posyandu as $item)
-                                    <option value="{{$item->id }}">{{$item->nama }}</option>
+                                    <option value="{{ $item->id }}" {{ (old("posyanduId") == $item->id ? "selected":"") }}>{{ $item->nama }}</option>
                                     @endforeach
                                 </select>
                             </div>
