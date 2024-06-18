@@ -31,10 +31,10 @@
                 @csrf
                 <div class="mb-3 w-full">
                     <label for="namaDusun" class="font-['Poppins'] font-normal text-sm text-[#7E7E7E] lg:text-base">Nama Dusun:</label>
-                    <select name="dusun" id="namaDusun" class="w-full mt-2 font-normal font-['Poppins'] text-sm border py-2 px-2 rounded-sm">
-                        <option selected value="">-Pilih Dusun-</option>
+                    <select name="" id="namaDusun" class="w-full mt-2 font-normal font-['Poppins'] text-sm border py-2 px-2 rounded-sm">
                         @foreach ($dusun as $item)
-                        <option value="{{ $item->id }}" {{ (old("dusun") == $item->id ? "selected":"") }}>{{ $item->nama }}</option>
+                        <option selected>-Pilih Dusun-</option>
+                        <option value="{{ $item->id }}">{{ $item->nama }}</option>
                         @endforeach
                     </select>
                     @error('dusun') <span class="text-red-700 text-xs my-2">{{ $message }}</span> @enderror
@@ -42,10 +42,10 @@
 
                 <div class="mb-3 w-full">
                     <label for="namaPosyandu" class="font-['Poppins'] font-normal text-sm text-[#7E7E7E] lg:text-base">Nama Posyandu:</label>
-                    <select name="posyandu" id="namaPosyandu" class="w-full mt-2 font-normal font-['Poppins'] text-sm border py-2 px-2 rounded-sm">
-                        <option selected value="">-Pilih Posyandu-</option>
-                        @foreach ($posyandu as $item)
-                        <option value="{{ $item->id }}" {{ (old("posyandu") == $item->id ? "selected":"") }}>{{ $item->nama }}</option>
+                    <select name="" id="namaPosyandu" class="w-full mt-2 font-normal font-['Poppins'] text-sm border py-2 px-2 rounded-sm">
+                        @foreach ($posyandu as $items)
+                        <option selected>-Pilih Posyandu-</option>
+                        <option value="{{ $items->id }}">{{ $items->nama }}</option>
                         @endforeach
                     </select>
                     @error('posyandu') <span class="text-red-700 text-xs my-2">{{ $message }}</span> @enderror

@@ -3,19 +3,39 @@
 namespace App\Exports;
 
 use App\Models\Posyandu;
-use Maatwebsite\Excel\Concerns\FromQuery;
+use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\Exportable;
 
-class PosyanduExport implements FromQuery
+class PosyanduExport implements FromCollection, WithHeadings
 {
+    use Exportable;
 
-    public function __construct(int $year)
+    public function collection()
     {
-        $this->year = $year;
+        return Posyandu::select([
+            'nik',
+            'nkk',
+            'nama',
+            'tempat_lahir',
+            'tgl_lahir',
+            'alamat',
+            'rt_rw',
+            'umur',
+        ])->orderBy('nik')->get();
     }
 
-    public function query()
+    public function headings(): array
     {
-        return Posyandu::all();
+        return [
+            'Nik',
+            'Nkk',
+            'Nama',
+            'Tempat Lahir',
+            'Tanggal Lahir',
+            'Alamat',
+            'Rt/Rw',
+            'Umur',
+        ];
     }
 }

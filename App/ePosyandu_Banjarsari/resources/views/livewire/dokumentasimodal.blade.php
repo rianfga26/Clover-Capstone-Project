@@ -36,6 +36,9 @@
                         </select>
                         @error('kategori') <span class="error">{{ $message }}</span> @enderror
                     </div>
+
+                    
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" wire:click="closeModal"

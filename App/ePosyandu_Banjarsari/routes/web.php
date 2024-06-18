@@ -16,6 +16,7 @@ use App\Http\Livewire\DokumentasiShow;
 use App\Http\Livewire\JadwalShow;
 use App\Http\Livewire\PosyanduShow;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\AnggotaController;
 
 use App\Models\Dokumentasimaster;
 use App\Models\Dokumentasi;
@@ -84,7 +85,8 @@ Route::prefix('admin')->group(function(){
     // Dusun & Utama middleware
     Route::middleware('auth', 'checkrole:utama,dusun')->group(function(){
         Route::get('pendaftaran-anggota-posyandu', PendaftaranAnggota::class)->name('admin.pendaftaran');  
-        Route::get('pendaftaran-anggota-posyandu/export', PendaftaranAnggota::class)->name('admin.pendaftaran.export');  
+        // Route::get('pendaftaran-anggota-posyandu/export', PendaftaranAnggota::class)->name('admin.pendaftaran.export');  
+        Route::get('pendaftaran-anggota-posyandu/export', [AnggotaController::class, 'export'])->name('admin.pendaftaran.export');
     });
 
 });
